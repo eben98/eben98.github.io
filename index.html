@@ -3,11 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My GitHub Pages</title>
+    <title>Ebenezer Daniel - Developer & Professional</title>
+    <meta name="description" content="Personal portfolio website of Ebenezer Daniel - Developer, Professional, and Technology Enthusiast">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+
+        main {
+            margin-top: 80px;
+            padding: 2rem 0;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn.primary {
+            background: #ffd700;
+            color: #333;
+            border-color: #ffd700;
+        }
+
+        .btn.primary:hover {
+            background: #ffed4e;
+            border-color: #ffed4e;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem 0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+            font-size: 2.5rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 10px 20px;
+            background: #0077b5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: #005885;
+            transform: translateY(-2px);
+        }
+
+        .social-btn.github {
+            background: #333;
+        }
+
+        .social-btn.github:hover {
+            background: #000;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>This is my first GitHub Pages website.</p>
-    <p><a href= "https://www.linkedin.com/in/ebenezer-daniel-958804124/">My LinkedIn Profile</a></p>
+    <header>
+        <nav class="container">
+            <div class="logo">Ebenezer Daniel</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>Welcome to My Portfolio</h1>
+                <p>Hi, I'm Ebenezer Daniel - Developer, Professional & Technology Enthusiast</p>
+                <div class="cta-buttons">
+                    <a href="#about" class="btn primary">Learn More About Me</a>
+                    <a href="https://www.linkedin.com/in/ebenezer-daniel-958804124/" class="btn" target="_blank">View LinkedIn Profile</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="profile-image">ED</div>
+                    <div>
+                        <p>I'm Ebenezer Daniel, a passionate developer and professional with a keen interest in technology and innovation. I enjoy creating solutions that make a difference and constantly learning new technologies to enhance my skills.</p>
+                        <p>This portfolio website showcases my journey, projects, and professional experience. I believe in the power of technology to transform ideas into reality and am always excited to take on new challenges.</p>
+                        <p>When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects, and connecting with fellow developers and professionals in the tech community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Web Development</h3>
+                        <p>HTML5, CSS3, JavaScript, and modern web frameworks</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Version Control</h3>
+                        <p>Git, GitHub, and collaborative development workflows</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Professional Skills</h3>
+                        <p>Problem-solving, teamwork, and continuous learning</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Tools & Technologies</h3>
+                        <p>GitHub Pages, Jekyll, and web development tools</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2>Let's Connect</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">I'm always interested in new opportunities and connections. Feel free to reach out!</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/ebenezer-daniel-958804124/" class="social-btn" target="_blank">
+                        <span>🔗</span> LinkedIn Profile
+                    </a>
+                    <a href="https://github.com/eben98" class="social-btn github" target="_blank">
+                        <span>🐙</span> GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ebenezer Daniel. All rights reserved. | Built with ❤️ using GitHub Pages</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.color = '#333';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.color = 'white';
+            }
+        });
+    </script>
 </body>
 </html>
