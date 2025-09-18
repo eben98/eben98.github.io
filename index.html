@@ -13,7 +13,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
+  <!-- Performance optimizations -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <style>
     :root{
       --bg: #0b1020; --card:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --accent:#22d3ee; --ring:#38bdf8;
@@ -30,9 +37,129 @@
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth}
     a{color:inherit;text-decoration:none}
     
+    /* Skip link for accessibility */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 6px;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 8px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 1000;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus {
+      top: 6px;
+      outline: 2px solid var(--text);
+    }
+    
+    /* Loading screen */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    .loading-spinner {
+      display: flex;
+      gap: 8px;
+    }
+    .spinner-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: loading-bounce 1.4s infinite ease-in-out;
+    }
+    .spinner-dot:nth-child(1) { animation-delay: -0.32s; }
+    .spinner-dot:nth-child(2) { animation-delay: -0.16s; }
+    .spinner-dot:nth-child(3) { animation-delay: 0s; }
+    
+    @keyframes loading-bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: none;
+      color: var(--bg);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-lg);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      z-index: 100;
+    }
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+    }
+    
     /* Smooth animations for all elements */
     * {
       transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    /* Improved focus states for accessibility */
+    a:focus, button:focus, [tabindex]:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    
+    /* Reduced motion for users who prefer it */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      :root {
+        --bg: #000000;
+        --card: #1a1a1a;
+        --text: #ffffff;
+        --muted: #cccccc;
+        --accent: #00ffff;
+      }
     }
     
     /* Custom scrollbar */
@@ -53,6 +180,7 @@
     .container{max-width:1100px;margin:0 auto;padding:24px}
     .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:color-mix(in srgb, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in srgb, var(--card), transparent 60%);z-index:50;transition:all 0.3s ease}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px}
+    .nav-right{display:flex;align-items:center;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700;cursor:pointer}
     .brand:hover .dot{transform:scale(1.2) rotate(360deg)}
     .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--grad1),var(--grad2),var(--grad3));transition:transform 0.3s ease}
@@ -61,6 +189,21 @@
     .menu a::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,var(--grad1),var(--grad2));opacity:0;transition:opacity 0.3s ease;z-index:-1}
     .menu a:hover::before{opacity:0.1}
     .menu a:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+    
+    /* Theme toggle button */
+    .theme-toggle{background:none;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);border-radius:8px;padding:8px;cursor:pointer;color:var(--text);transition:all 0.3s ease;position:relative;width:40px;height:40px;display:flex;align-items:center;justify-content:center}
+    .theme-toggle:hover{border-color:var(--accent);transform:scale(1.05)}
+    .theme-icon{width:20px;height:20px;transition:all 0.3s ease}
+    .moon-icon{display:none}
+    [data-theme="light"] .sun-icon{display:none}
+    [data-theme="light"] .moon-icon{display:block}
+    
+    /* Mobile menu toggle */
+    .mobile-menu-toggle{display:none;flex-direction:column;background:none;border:none;cursor:pointer;padding:4px;width:30px;height:30px;justify-content:space-around;align-items:center}
+    .mobile-menu-toggle span{display:block;width:20px;height:2px;background:var(--text);transition:all 0.3s ease;transform-origin:center}
+    .mobile-menu-toggle.active span:nth-child(1){transform:rotate(45deg) translate(5px, 5px)}
+    .mobile-menu-toggle.active span:nth-child(2){opacity:0}
+    .mobile-menu-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(7px, -6px)}
     .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);background:linear-gradient(135deg, color-mix(in srgb, var(--card), transparent 0%), color-mix(in srgb, var(--card), transparent 30%)); box-shadow:var(--shadow-sm);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
     .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transition:left 0.6s ease}
     .btn:hover::before{left:100%}
@@ -106,6 +249,33 @@
     .chip:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:var(--shadow-sm)}
     .split{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
     @media (max-width:860px){.split{grid-template-columns:1fr}}
+    
+    /* Mobile responsiveness */
+    @media (max-width:768px) {
+      .nav-inner{padding:12px 16px}
+      .nav-right .menu{display:none}
+      .mobile-menu-toggle{display:flex}
+      .nav-right.menu-open .menu{display:flex;position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 60%);border-radius:0 0 12px 12px;flex-direction:column;padding:16px;box-shadow:var(--shadow-xl)}
+      .nav-right.menu-open .menu a{margin:8px 0;padding:12px;text-align:center;border-radius:8px}
+      .container{padding:16px}
+      .hero{padding:60px 16px}
+      .section{padding:32px 16px}
+      .grid.projects{grid-template-columns:1fr}
+      .grid.skills{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+      .hero-actions{flex-direction:column;align-items:stretch}
+      .hero-actions .btn{text-align:center}
+      .title{font-size:clamp(28px,8vw,48px)}
+      .lead{font-size:clamp(14px,4vw,18px)}
+    }
+    
+    @media (max-width:480px) {
+      .nav-inner{padding:8px 12px}
+      .container{padding:12px}
+      .hero{padding:40px 12px}
+      .section{padding:24px 12px}
+      .card{padding:14px}
+      .badge{font-size:11px;padding:4px 8px}
+    }
     
     /* Animations */
     @keyframes fadeInUp {
@@ -173,32 +343,58 @@
   </script>
 </head>
 <body>
+  <!-- Loading screen -->
+  <div id="loading-screen" class="loading-screen">
+    <div class="loading-spinner">
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+    </div>
+  </div>
+  
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="nav">
     <div class="nav-inner container">
-      <div class="brand" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})"><span class="dot"></span> <span>Ebenezer Daniel</span></div>
-      <nav class="menu">
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-      </nav>
+      <div class="brand" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})" role="button" tabindex="0" aria-label="Navigate to home section"><span class="dot" aria-hidden="true"></span> <span>Ebenezer Daniel</span></div>
+      <div class="nav-right">
+        <nav class="menu" role="navigation" aria-label="Main navigation">
+          <a href="#projects" aria-label="Go to Projects section">Projects</a>
+          <a href="#skills" aria-label="Go to Skills section">Skills</a>
+          <a href="#experience" aria-label="Go to Experience section">Experience</a>
+          <a href="#contact" aria-label="Go to Contact section">Contact</a>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme">
+          <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero container">
+  <main role="main" id="main-content">
+    <section class="hero container" role="banner">
       <p class="eyebrow">Software Engineer • Flutter • ML/AI</p>
       <h1 class="title">I build production‑ready mobile apps and data‑driven features.</h1>
       <p class="lead">4+ years shipping cross‑platform apps (Flutter/Dart), integrating APIs, and automating releases with CI/CD. Comfortable with Python, PyTorch/scikit‑learn, and analytics pipelines. Currently finishing an MS in CS at DePaul University (Nov 2025).</p>
       <div class="hero-actions">
-        <a class="btn" href="#projects">See Projects</a>
-        <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email me</a>
+        <a class="btn" href="#projects" aria-label="View my projects">See Projects</a>
+        <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener" aria-label="Visit my GitHub profile (opens in new tab)">GitHub ↗</a>
+        <a class="btn" href="mailto:ebenezerdaniel98@gmail.com" aria-label="Send me an email">Email me</a>
       </div>
     </section>
 
-    <section id="projects" class="section container">
-      <h2>Highlighted Projects</h2>
+    <section id="projects" class="section container" role="region" aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Highlighted Projects</h2>
       <div class="grid projects">
         <!-- Project 1 -->
         <article class="card project">
@@ -375,9 +571,86 @@
     <span>© <span id="y"></span> Ebenezer Daniel. Built with vanilla HTML/CSS. Hosted on GitHub Pages.</span>
   </footer>
 
+  <!-- Back to top button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 15l-6-6-6 6"/>
+    </svg>
+  </button>
+
   <script>
+    // Loading screen
+    window.addEventListener('load', () => {
+      const loadingScreen = document.getElementById('loading-screen');
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+          loadingScreen.remove();
+        }, 500);
+      }, 500);
+    });
+    
     // Set current year
     document.getElementById('y').textContent = new Date().getFullYear();
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    themeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const navRight = document.querySelector('.nav-right');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      navRight.classList.toggle('menu-open');
+      mobileMenuToggle.classList.toggle('active');
+      const isExpanded = navRight.classList.contains('menu-open');
+      mobileMenuToggle.setAttribute('aria-expanded', isExpanded);
+    });
+    
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navRight.classList.remove('menu-open');
+        mobileMenuToggle.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    
+    // Keyboard navigation for brand button
+    const brand = document.querySelector('.brand');
+    brand.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+      }
+    });
+    
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+    
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
     
     // Smooth scroll reveal animation
     const observerOptions = {
