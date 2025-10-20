@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ebenezer Daniel — Software Engineer (Flutter • ML/AI)</title>
-  <meta name="description" content="Portfolio of Ebenezer Daniel — Software Engineer specializing in Flutter, Dart, Python, and ML/AI. Projects, skills, and contact." />
+  <meta name="description" content="Portfolio of Ebenezer Daniel — Software Engineer specializing in Flutter, Dart, Python, and ML/AI. Projects, skills, experience, education, and contact." />
   <meta property="og:title" content="Ebenezer Daniel — Software Engineer (Flutter • ML/AI)" />
-  <meta property="og:description" content="Flutter mobile engineer with ML/AI—projects, skills, and contact." />
+  <meta property="og:description" content="Flutter mobile engineer with ML/AI—projects, experience, and contact." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="https://avatars.githubusercontent.com/u/41258427" />
   <meta name="theme-color" content="#0f172a" />
@@ -16,171 +16,60 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
   <style>
     :root{
-      --bg: #0b1020; --card:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --accent:#22d3ee; --ring:#38bdf8;
+      --bg:#0b1020; --card:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --accent:#22d3ee; --ring:#38bdf8;
       --grad1:#0ea5e9; --grad2:#22d3ee; --grad3:#a78bfa;
-      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --shadow-sm:0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-lg:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
     }
-    @media (prefers-color-scheme: light){
-      :root{ --bg:#f8fafc; --card:#ffffff; --muted:#475569; --text:#0f172a; --accent:#0ea5e9; --ring:#0ea5e9; }
-    }
-    *{box-sizing:border-box}
+    @media (prefers-color-scheme: light){ :root{ --bg:#f8fafc; --card:#ffffff; --muted:#475569; --text:#0f172a; --accent:#0ea5e9; --ring:#0ea5e9; } }
+    *{box-sizing:border-box; transition: all .2s cubic-bezier(0.4,0,0.2,1)}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth}
     a{color:inherit;text-decoration:none}
-    
-    /* Smooth animations for all elements */
-    * {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--muted);
-      border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: var(--accent);
-    }
-    
     .container{max-width:1100px;margin:0 auto;padding:24px}
-    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:color-mix(in srgb, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in srgb, var(--card), transparent 60%);z-index:50;transition:all 0.3s ease}
+    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:color-mix(in srgb, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in srgb, var(--card), transparent 60%);z-index:50}
     .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700;cursor:pointer}
-    .brand:hover .dot{transform:scale(1.2) rotate(360deg)}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--grad1),var(--grad2),var(--grad3));transition:transform 0.3s ease}
-    .menu{display:flex;align-items:center}
-    .menu a{margin-left:16px;padding:8px 12px;border-radius:10px;position:relative;overflow:hidden}
-    .menu a::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(90deg,var(--grad1),var(--grad2));opacity:0;transition:opacity 0.3s ease;z-index:-1}
-    .menu a:hover::before{opacity:0.1}
-    .menu a:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);background:linear-gradient(135deg, color-mix(in srgb, var(--card), transparent 0%), color-mix(in srgb, var(--card), transparent 30%)); box-shadow:var(--shadow-sm);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
-    .btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);transition:left 0.6s ease}
-    .btn:hover::before{left:100%}
-    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-xl);border-color:var(--accent)}
-    .btn:active{transform:translateY(0);transition:transform 0.1s ease}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--grad1),var(--grad2),var(--grad3))}
+    .menu{display:flex;align-items:center;gap:8px}
+    .menu a,.menu button{margin-left:8px;padding:8px 12px;border-radius:10px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);background:linear-gradient(135deg, color-mix(in srgb, var(--card), transparent 0%), color-mix(in srgb, var(--card), transparent 30%)); box-shadow:var(--shadow-sm);position:relative;overflow:hidden;font-weight:600}
+    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
+    .btn.disabled{opacity:.6;cursor:not-allowed}
     .hero{padding:80px 24px;position:relative}
-    .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 0%, rgba(34,211,238,0.1) 0%, transparent 50%);pointer-events:none}
-    .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);animation:fadeInUp 0.8s ease-out}
-    .title{font-size:clamp(32px,6vw,56px);font-weight:800;line-height:1.05;margin:.3em 0;background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));-webkit-background-clip:text;background-clip:text;color:transparent;animation:fadeInUp 0.8s ease-out 0.2s both}
-    .lead{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:800px;animation:fadeInUp 0.8s ease-out 0.4s both}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;animation:fadeInUp 0.8s ease-out 0.6s both}
-    .grid{display:grid;gap:16px}
-    .skills{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
-    .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 75%);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm);transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);position:relative;overflow:hidden}
-    .card::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,color-mix(in srgb, var(--grad1), transparent 95%), color-mix(in srgb, var(--grad2), transparent 95%));opacity:0;transition:opacity 0.3s ease}
-    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl);border-color:color-mix(in srgb, var(--accent), transparent 50%)}
-    .card:hover::before{opacity:1}
-    .card h3{margin:2px 0 10px;font-size:16px;position:relative;z-index:1}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:color-mix(in srgb, var(--card), white 5%);border:1px solid color-mix(in srgb, var(--ring), transparent 70%);font-size:12px;margin:4px 6px 0 0;transition:all 0.2s ease;position:relative;z-index:1}
-    .badge:hover{transform:scale(1.05);background:color-mix(in srgb, var(--accent), transparent 90%);border-color:var(--accent)}
+    .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .title{font-size:clamp(32px,6vw,56px);font-weight:800;line-height:1.05;margin:.3em 0;background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:800px}
     .section{padding:42px 24px}
     .section h2{font-size:28px;margin:0 0 16px;position:relative}
     .section h2::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:3px;background:linear-gradient(90deg,var(--grad1),var(--grad2));border-radius:2px}
-    .projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
-    .project{display:flex;flex-direction:column;gap:10px}
-    .thumb{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb, var(--grad1), transparent 25%), color-mix(in srgb, var(--grad2), transparent 25%));display:flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);transition:all 0.3s ease}
-    .project:hover .thumb{transform:scale(1.02);box-shadow:var(--shadow-md)}
-    .thumb svg{width:52px;height:52px;opacity:.9;transition:all 0.3s ease}
-    .project:hover .thumb svg{transform:scale(1.1);opacity:1}
-    .meta{display:flex;gap:8px;flex-wrap:wrap;position:relative;z-index:1}
-    .timeline{border-left:2px dashed color-mix(in srgb, var(--ring), transparent 60%);margin-left:10px;padding-left:18px;position:relative}
-    .timeline::before{content:'';position:absolute;left:-6px;top:0;width:10px;height:10px;background:var(--accent);border-radius:50%;box-shadow:0 0 10px var(--accent)}
-    .item{margin:16px 0;opacity:0;animation:slideInLeft 0.6s ease-out forwards}
-    .item:nth-child(1){animation-delay:0.1s}
-    .item:nth-child(2){animation-delay:0.3s}
-    .item:nth-child(3){animation-delay:0.5s}
-    .item h3{margin:0}
-    .small{color:var(--muted);font-size:14px;position:relative;z-index:1}
+    .grid{display:grid;gap:16px}
+    .projects{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 75%);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:color-mix(in srgb, var(--card), white 5%);border:1px solid color-mix(in srgb, var(--ring), transparent 70%);font-size:12px;margin:4px 6px 0 0}
+    .thumb{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb, var(--grad1), transparent 25%), color-mix(in srgb, var(--grad2), transparent 25%));display:flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover;opacity:.95}
+    .small{color:var(--muted);font-size:14px}
+    /* Timeline */
+    .timeline{position:relative;margin-left:10px;padding-left:22px;border-left:2px dashed color-mix(in srgb, var(--ring), transparent 60%)}
+    .timeline::before{content:'';position:absolute;left:-6px;top:0;width:10px;height:10px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
+    .t-item{margin:18px 0}
+    .t-year{display:inline-block;font-weight:700;margin-bottom:8px;color:var(--accent)}
+    .t-title{margin:0}
     .footer{padding:36px 24px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid color-mix(in srgb, var(--card), transparent 60%)}
-    .kbd{font-family:"Fira Code",ui-monospace,Menlo,Consolas,monospace;font-size:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);padding:2px 6px;border-radius:6px;background:color-mix(in srgb, var(--card), transparent 50%);transition:all 0.2s ease}
-    .kbd:hover{transform:scale(1.05);background:var(--card)}
-    .chip{font-size:12px;padding:6px 10px;border-radius:9999px;border:1px dashed color-mix(in srgb, var(--ring), transparent 65%);transition:all 0.2s ease}
-    .chip:hover{transform:translateY(-1px);border-color:var(--accent);box-shadow:var(--shadow-sm)}
-    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
-    @media (max-width:860px){.split{grid-template-columns:1fr}}
-    
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    /* Scroll reveal animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.6s ease-out;
-    }
-    
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Grid stagger animation */
-    .grid > * {
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-    
-    .grid .card:nth-child(1) { animation-delay: 0.1s; }
-    .grid .card:nth-child(2) { animation-delay: 0.2s; }
-    .grid .card:nth-child(3) { animation-delay: 0.3s; }
-    .grid .card:nth-child(4) { animation-delay: 0.4s; }
-    .grid .card:nth-child(5) { animation-delay: 0.5s; }
+    /* Theme toggle */
+    body.light-mode { --bg:#f8fafc; --card:#ffffff; --muted:#475569; --text:#0f172a; --accent:#0ea5e9; --ring:#0ea5e9; }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Ebenezer Daniel",
-    "jobTitle": "Software Engineer",
-    "url": "https://eben98.github.io/",
-    "sameAs": [
-      "https://github.com/eben98",
-      "https://www.linkedin.com/in/ebenezer-daniel-i"
-    ]
-  }
-  </script>
 </head>
 <body>
   <header class="nav">
     <div class="nav-inner container">
-      <div class="brand" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})"><span class="dot"></span> <span>Ebenezer Daniel</span></div>
+      <div class="brand" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})"><span class="dot"></span><span>Ebenezer Daniel</span></div>
       <nav class="menu">
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
+        <button id="themeToggle" class="btn" style="padding:6px 10px">🌗 Theme</button>
       </nav>
     </div>
   </header>
@@ -189,8 +78,8 @@
     <section class="hero container">
       <p class="eyebrow">Software Engineer • Flutter • ML/AI</p>
       <h1 class="title">I build production‑ready mobile apps and data‑driven features.</h1>
-      <p class="lead">4+ years shipping cross‑platform apps (Flutter/Dart), integrating APIs, and automating releases with CI/CD. Comfortable with Python, PyTorch/scikit‑learn, and analytics pipelines. Currently finishing an MS in CS at DePaul University (Nov 2025).</p>
-      <div class="hero-actions">
+      <p class="lead">4+ years shipping cross‑platform apps (Flutter/Dart), integrating APIs, and automating releases with CI/CD. Python + PyTorch for ML; currently finishing an MS in CS at DePaul (Nov 2025).</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
         <a class="btn" href="#projects">See Projects</a>
         <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub ↗</a>
         <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email me</a>
@@ -199,314 +88,220 @@
 
     <section id="projects" class="section container">
       <h2>Highlighted Projects</h2>
-      <div class="grid projects">
-        <!-- Project 1 -->
-        <article class="card project">
+
+      <div class="grid projects" id="projectGrid">
+        <!-- AirPods IMU (Private Repo) -->
+        <article class="card project" data-tags="flutter ml backend">
           <div class="thumb" aria-hidden="true">
-            <!-- Phone + chart icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="7" y="2" width="10" height="20" rx="2"/>
-              <path d="M11 7h2"/>
-              <path d="M9 16l2-2 2 2 3-3"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop" alt="AirPods IMU project thumbnail"/>
           </div>
           <div>
             <h3>AirPods IMU — Gait Authentication (Flutter + FastAPI)</h3>
-            <p class="small">Streams AirPods motion data and classifies user identity for 2FA. Built with Flutter (BLoC), WebSockets, and a Python FastAPI inference service (PyTorch).</p>
+            <p class="small">Built a Flutter app that streams AirPods motion data (DeviceMotion + BLE) to a FastAPI backend for real‑time gait‑based 2FA. Backend runs PyTorch models over WebSockets for low‑latency inference.<br><em>GitHub repo is private — available upon request for interviews.</em></p>
             <div class="meta">
               <span class="badge">Flutter</span>
-              <span class="badge">BLoC</span>
               <span class="badge">FastAPI</span>
               <span class="badge">PyTorch</span>
+              <span class="badge">WebSockets</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <span class="btn disabled" title="Private Repo">Private Repo</span>
             </div>
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="card project">
+        <!-- Energy Forecasting (Colab) -->
+        <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
-            <!-- Cloud + arrows icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"/>
-              <path d="M8 17h8"/>
-              <path d="M12 13v8"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop" alt="Energy forecasting project thumbnail"/>
           </div>
           <div>
-            <h3>ComEd Energy Demand Forecasting (CNN‑LSTM)</h3>
-            <p class="small">Predicts hourly energy consumption using weather from 18 Meteostat stations. Custom CNN‑LSTM in PyTorch; data pipelines in pandas.</p>
+            <h3>Predicting Hourly Energy Consumption with Weather (Neural Networks)</h3>
+            <p class="small">CNN‑LSTM forecasting for ComEd region using weather from 18 Meteostat stations. Includes data cleaning, feature engineering, and training/evaluation notebooks.</p>
             <div class="meta">
               <span class="badge">PyTorch</span>
               <span class="badge">Time Series</span>
               <span class="badge">pandas</span>
             </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://colab.research.google.com/github/eben98/csc_578_final_project/blob/main/Final_Project_CSC_578.ipynb" target="_blank" rel="noopener">Open in Colab ↗</a>
+            </div>
           </div>
         </article>
 
-        <!-- Project 3 -->
-        <article class="card project">
+        <!-- Recommender System -->
+        <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
-            <!-- Graph/network icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="6" cy="6" r="3"/>
-              <circle cx="18" cy="6" r="3"/>
-              <circle cx="12" cy="18" r="3"/>
-              <path d="M8.6 8.6 10.8 15.4"/>
-              <path d="M15.4 8.6 13.2 15.4"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Recommender system project thumbnail"/>
           </div>
           <div>
-            <h3>Item‑Based Recommender (Python)</h3>
-            <p class="small">Built similarity‑based recommendations with MAE evaluation and utilities for sparse matrices and debugging hidden tests.</p>
+            <h3>Recommender System — Item‑Based Similarity</h3>
+            <p class="small">Item‑item CF with cosine similarity, sparse matrix utilities, MAE metrics, and debugging hooks for hidden tests.</p>
             <div class="meta">
               <span class="badge">Python</span>
               <span class="badge">NumPy</span>
               <span class="badge">Recommenders</span>
             </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://github.com/eben98/dsc_478_final_project_rec_system/blob/main/final_project.ipynb" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
           </div>
         </article>
 
-        <!-- Project 4 -->
-        <article class="card project">
+        <!-- Heart Disease (R) -->
+        <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
-            <!-- Code file icon -->
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <path d="M14 2v6h6"/>
-              <path d="M9 13l-2 2 2 2"/>
-              <path d="M15 13l2 2-2 2"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1513224502586-d1e602410265?q=80&w=1200&auto=format&fit=crop" alt="Heart disease prediction R project thumbnail"/>
           </div>
           <div>
-            <h3>ML Pipeline Template (scikit‑learn)</h3>
-            <p class="small">End‑to‑end template: feature scaling, model selection (GridSearchCV), metrics, and artifact saving with joblib for reproducible experiments.</p>
+            <h3>Heart Disease Prediction (R)</h3>
+            <p class="small">End‑to‑end R pipeline (tidyverse + caret): feature engineering, model comparison, and RMarkdown reporting.</p>
             <div class="meta">
-              <span class="badge">scikit‑learn</span>
-              <span class="badge">MLOps</span>
-              <span class="badge">Joblib</span>
+              <span class="badge">R</span>
+              <span class="badge">Caret</span>
+              <span class="badge">RMarkdown</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://github.com/eben98/heart_prediction_with_r/blob/main/Final_project.Rmd" target="_blank" rel="noopener">View Rmd ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Kipos Stadia -->
+        <article class="card project" data-tags="flutter backend">
+          <div class="thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Kipos Stadia app thumbnail"/>
+          </div>
+          <div>
+            <h3>Kipos Stadia — Church Networking App</h3>
+            <p class="small">Implemented Learn (articles), Post (UGC), and View Profile; improved stability and performance with profiling and test coverage.</p>
+            <div class="meta">
+              <span class="badge">Flutter</span>
+              <span class="badge">Firebase</span>
+              <span class="badge">REST APIs</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://stadia.org/kipos/" target="_blank" rel="noopener">Live ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- MOHI -->
+        <article class="card project" data-tags="flutter backend">
+          <div class="thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop" alt="MOHI NGO app thumbnail"/>
+          </div>
+          <div>
+            <h3>MOHI — NGO Teacher & Social Worker Apps</h3>
+            <p class="small">Redesigned teacher/social‑worker apps with attendance tracking & workflow engines; ~30% perf gains and ~40% task efficiency.</p>
+            <div class="meta">
+              <span class="badge">Flutter</span>
+              <span class="badge">Performance</span>
+              <span class="badge">State Management</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" rel="noopener">Play Store ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Toyota (notes) -->
+        <article class="card project" data-tags="flutter backend">
+          <div class="thumb" aria-hidden="true">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop" alt="Toyota connected services thumbnail"/>
+          </div>
+          <div>
+            <h3>Toyota Connected Services — Subscriptions Module</h3>
+            <p class="small">Hybrid app integration across iOS/Android; implemented subscriptions flow; raised reliability with crash‑fixes and instrumentation.</p>
+            <div class="meta">
+              <span class="badge">Flutter</span>
+              <span class="badge">iOS</span>
+              <span class="badge">Android</span>
+            </div>
+            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">Notes ↗</a>
             </div>
           </div>
         </article>
       </div>
 
-      <p class="small" style="margin-top:12px">More code on <a href="https://github.com/eben98" target="_blank" rel="noopener">github.com/eben98</a>. Want a dedicated case study page? <span class="kbd">/docs</span> folder supported—add a <span class="kbd">project‑name.html</span>.</p>
+      <p class="small" style="margin-top:12px">Quick links: 
+        <a href="https://github.com/eben98/dsc_478_final_project_rec_system/blob/main/final_project.ipynb" target="_blank" rel="noopener">Recommender Systems</a> • 
+        <a href="https://github.com/eben98/heart_prediction_with_r/blob/main/Final_project.Rmd" target="_blank" rel="noopener">Heart Disease (R)</a> • 
+        <a href="https://colab.research.google.com/github/eben98/csc_578_final_project/blob/main/Final_Project_CSC_578.ipynb" target="_blank" rel="noopener">Energy (NN, Colab)</a>
+      </p>
     </section>
 
-    <section id="skills" class="section container">
-      <h2>Skills</h2>
-      <div class="grid skills">
-        <div class="card"><h3>Mobile</h3>
-          <span class="badge">Flutter</span>
-          <span class="badge">Dart</span>
-          <span class="badge">BLoC / Riverpod</span>
-          <span class="badge">Firebase</span>
+    <section id="experience" class="section container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-year">2023 — Present</span>
+          <h3 class="t-title">Graduate Assistant — DePaul University • Chicago, IL</h3>
+          <p class="small">Conducted hands‑on labs in control systems & robotics (MATLAB/Simulink/Arduino). Taught applied computing; improved lab completion by ~30%. Built Flutter apps to collect/analyze device motion for Parkinson’s research and AirPods‑based authentication.</p>
         </div>
-        <div class="card"><h3>Backend & APIs</h3>
-          <span class="badge">FastAPI</span>
-          <span class="badge">REST / GraphQL</span>
-          <span class="badge">WebSockets</span>
-          <span class="badge">PostgreSQL</span>
+        <div class="t-item">
+          <span class="t-year">2023 — 2024</span>
+          <h3 class="t-title">Graduate Research Assistant — DePaul University</h3>
+          <p class="small">Mapped gene‑expression patterns to orofacial motor behaviors using Allen Institute data. Built Python pipelines (K‑Means, PCA, custom image analysis) to accelerate analysis by ~30%.</p>
         </div>
-        <div class="card"><h3>ML / Data</h3>
-          <span class="badge">PyTorch</span>
-          <span class="badge">scikit‑learn</span>
-          <span class="badge">pandas</span>
-          <span class="badge">Time Series</span>
+        <div class="t-item">
+          <span class="t-year">2020 — 2023</span>
+          <h3 class="t-title">Software Engineer (Flutter) — UB Technology Innovations (UBTI) • Chennai, India</h3>
+          <p class="small">Developed & maintained 5+ Flutter apps (Toyota Connected, MOHI, Kipos). Integrated REST/GraphQL, added feature flags, boosted reliability (‑35% post‑release issues). Led UI refactors, testing, and CI/CD practices.</p>
         </div>
-        <div class="card"><h3>DevOps</h3>
-          <span class="badge">GitHub Actions</span>
-          <span class="badge">Fastlane</span>
-          <span class="badge">Docker</span>
-          <span class="badge">CI/CD</span>
-        </div>
-        <div class="card"><h3>Languages</h3>
-          <span class="badge">Dart</span>
-          <span class="badge">Python</span>
-          <span class="badge">Java</span>
-          <span class="badge">R</span>
+        <div class="t-item">
+          <span class="t-year">2020</span>
+          <h3 class="t-title">Data Analyst & RPA Developer — UBTI</h3>
+          <p class="small">Built Power Apps/Automate solutions (Nokia, The Hindu, Health India TPA). Automated daily workflows; delivered BI dashboards; improved operational efficiency by ~60%.</p>
         </div>
       </div>
     </section>
 
-    <section id="experience" class="section container split">
-      <div>
-        <h2>Experience</h2>
-        <div class="timeline">
-          <div class="item">
-            <h3>Graduate & Research Assistant — DePaul University</h3>
-            <div class="small">2024 — 2025 • Chicago, IL</div>
-            <p class="small">Ran hands‑on labs in control systems and robotics (MATLAB/Simulink/Arduino). Researching sensor‑driven mobile computing and authentication.</p>
-          </div>
-          <div class="item">
-            <h3>Software Engineer — Unlimited Innovations</h3>
-            <div class="small">2020 — 2023 • Chennai, India</div>
-            <p class="small">Shipped Flutter features for Toyota Connected Services and NGO apps; optimized performance, led UI refactors, and added test coverage.</p>
-          </div>
+    <section id="education" class="section container">
+      <h2>Education</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <span class="t-year">2024 — 2025</span>
+          <h3 class="t-title">MS, Computer Science — DePaul University</h3>
+          <p class="small">Expected Nov 2025 • GPA 3.95. Coursework: Applied Algorithms, OOP, Distributed Systems, DBMS, ML, Neural Networks & Deep Learning.</p>
+        </div>
+        <div class="t-item">
+          <span class="t-year">2015 — 2019</span>
+          <h3 class="t-title">BE, Electronics & Communication — Anna University, Chennai</h3>
+          <p class="small">Projects in embedded systems and applied ML; foundations for software & mobile engineering.</p>
         </div>
       </div>
-      <aside>
-        <h2>Education</h2>
-        <div class="card">
-          <h3>MS, Computer Science — DePaul University</h3>
-          <div class="small">Expected Nov 2025 • GPA 3.95</div>
-          <p class="small">Applied Algorithms, OOP, Distributed Systems, DBMS, ML, Neural Networks.</p>
-        </div>
-        <div class="card" style="margin-top:12px">
-          <h3>Certifications</h3>
-          <p class="small">Agile • Power Platform App Maker • Power Platform Fundamentals</p>
-        </div>
-      </aside>
     </section>
 
     <section id="contact" class="section container">
       <h2>Contact</h2>
       <div class="card">
-        <p class="small">Best way to reach me: <a href="mailto:ebenezerdaniel98@gmail.com">ebenezerdaniel98@gmail.com</a>. I’m also active on <a href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>.</p>
-        <div class="meta">
-          <a class="chip" href="mailto:ebenezerdaniel98@gmail.com">Email</a>
-          <a class="chip" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub</a>
-          <a class="chip" href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>
+        <p class="small">Reach me at <a href="mailto:ebenezerdaniel98@gmail.com">ebenezerdaniel98@gmail.com</a> or on <a href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>.</p>
+        <div class="meta" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email</a>
+          <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <span>© <span id="y"></span> Ebenezer Daniel. Built with vanilla HTML/CSS. Hosted on GitHub Pages.</span>
+    <span>© <span id="y"></span> Ebenezer Daniel. Built with vanilla HTML/CSS/JS. Hosted on GitHub Pages.</span>
   </footer>
 
   <script>
-    // Set current year
+    // Year
     document.getElementById('y').textContent = new Date().getFullYear();
-    
-    // Smooth scroll reveal animation
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
-      });
-    }, observerOptions);
-    
-    // Observe all sections for reveal animation
-    document.addEventListener('DOMContentLoaded', () => {
-      // Add reveal class to sections
-      const sections = document.querySelectorAll('.section, .hero');
-      sections.forEach(section => {
-        section.classList.add('reveal');
-        observer.observe(section);
-      });
-      
-      // Add parallax effect to hero background
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        window.addEventListener('scroll', () => {
-          const scrolled = window.pageYOffset;
-          const rate = scrolled * -0.5;
-          hero.style.transform = `translateY(${rate}px)`;
-        });
-      }
-      
-      // Add typing effect to title
-      const title = document.querySelector('.title');
-      if (title) {
-        const text = title.textContent;
-        title.textContent = '';
-        let i = 0;
-        
-        const typeWriter = () => {
-          if (i < text.length) {
-            title.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-          }
-        };
-        
-        // Start typing effect after initial animation
-        setTimeout(typeWriter, 1000);
-      }
-      
-      // Add floating animation to project icons
-      const thumbs = document.querySelectorAll('.thumb svg');
-      thumbs.forEach((thumb, index) => {
-        thumb.style.animation = `float 3s ease-in-out infinite`;
-        thumb.style.animationDelay = `${index * 0.5}s`;
-      });
-      
-      // Enhance navbar on scroll
-      let lastScrollTop = 0;
-      const navbar = document.querySelector('.nav');
-      
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-          // Scrolling down
-          navbar.style.transform = 'translateY(-100%)';
-        } else {
-          // Scrolling up
-          navbar.style.transform = 'translateY(0)';
-        }
-        
-        // Add shadow when scrolled
-        if (scrollTop > 50) {
-          navbar.style.boxShadow = 'var(--shadow-lg)';
-        } else {
-          navbar.style.boxShadow = 'none';
-        }
-        
-        lastScrollTop = scrollTop;
-      });
-      
-      // Add click ripple effect to buttons
-      const buttons = document.querySelectorAll('.btn, .chip');
-      buttons.forEach(button => {
-        button.addEventListener('click', function(e) {
-          const ripple = document.createElement('span');
-          const rect = this.getBoundingClientRect();
-          const size = Math.max(rect.width, rect.height);
-          const x = e.clientX - rect.left - size / 2;
-          const y = e.clientY - rect.top - size / 2;
-          
-          ripple.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            left: ${x}px;
-            top: ${y}px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-          `;
-          
-          this.style.position = 'relative';
-          this.style.overflow = 'hidden';
-          this.appendChild(ripple);
-          
-          setTimeout(() => {
-            ripple.remove();
-          }, 600);
-        });
-      });
-      
-      // Add CSS for ripple animation
-      const style = document.createElement('style');
-      style.textContent = `
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-      `;
-      document.head.appendChild(style);
+
+    // Theme toggle persist
+    const toggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') document.body.classList.add('light-mode');
+    toggle?.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
     });
   </script>
 </body>
