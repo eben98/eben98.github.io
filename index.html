@@ -23,7 +23,11 @@
     }
     @media (prefers-color-scheme: light){ :root{ --bg:#f8fafc; --card:#ffffff; --muted:#475569; --text:#0f172a; --accent:#0ea5e9; --ring:#0ea5e9; } }
     *{box-sizing:border-box; transition: all .2s cubic-bezier(0.4,0,0.2,1)}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;scroll-behavior:smooth}
+    
+    /* MODIFIED: Added scroll-padding-top */
+    html{scroll-behavior:smooth; scroll-padding-top: 80px;}
+    
+    body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:24px}
     .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:color-mix(in srgb, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in srgb, var(--card), transparent 60%);z-index:50}
@@ -35,16 +39,59 @@
     .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);background:linear-gradient(135deg, color-mix(in srgb, var(--card), transparent 0%), color-mix(in srgb, var(--card), transparent 30%)); box-shadow:var(--shadow-sm);position:relative;overflow:hidden;font-weight:600}
     .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
     .btn.disabled{opacity:.6;cursor:not-allowed}
-    .hero{padding:80px 24px;position:relative}
+    
+    /* --- NEW: Hero Mouse-Follow Background --- */
+    .hero {
+      padding: 80px 24px;
+      position: relative;
+      background: radial-gradient(
+        500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+        color-mix(in srgb, var(--accent), transparent 70%), 
+        transparent 90%
+      ), var(--bg);
+    }
+    /* --- END: Hero Mouse-Follow --- */
+
     .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
     .title{font-size:clamp(32px,6vw,56px);font-weight:800;line-height:1.05;margin:.3em 0;background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));-webkit-background-clip:text;background-clip:text;color:transparent}
+    
+    /* --- NEW: Typewriter Animation --- */
+    #typewriter-title { min-height: 1.05em; /* Prevents layout shift */ }
+    #typewriter-title::after {
+      content: '_';
+      background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      animation: blink 1s infinite;
+      font-weight: 800;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    /* --- END: Typewriter --- */
+
     .lead{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:800px}
     .section{padding:42px 24px}
     .section h2{font-size:28px;margin:0 0 16px;position:relative}
     .section h2::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:3px;background:linear-gradient(90deg,var(--grad1),var(--grad2));border-radius:2px}
     .grid{display:grid;gap:16px}
-    .projects{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+    .projects{
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      perspective: 1000px; /* NEW: Added for 3D tilt */
+    }
     .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 75%);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
+    
+    /* --- NEW: 3D Tilt Effect --- */
+    .card.project {
+      transition: transform 0.1s ease-out; /* Faster transition for responsive tilt */
+      transform-style: preserve-3d;
+    }
+    .card.project:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
+    }
+    /* --- END: 3D Tilt --- */
+
     .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:color-mix(in srgb, var(--card), white 5%);border:1px solid color-mix(in srgb, var(--ring), transparent 70%);font-size:12px;margin:4px 6px 0 0}
     .thumb{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb, var(--grad1), transparent 25%), color-mix(in srgb, var(--grad2), transparent 25%));display:flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);overflow:hidden}
     .thumb img{width:100%;height:100%;object-fit:cover;opacity:.95}
@@ -75,9 +122,9 @@
   </header>
 
   <main>
-    <section class="hero container">
+    <section class="hero container" id="hero-section">
       <p class="eyebrow">Software Engineer • Flutter • ML/AI</p>
-      <h1 class="title">I build production‑ready mobile apps and data‑driven features.</h1>
+            <h1 class="title" id="typewriter-title">I build production‑ready mobile apps and data‑driven features.</h1>
       <p class="lead">4+ years shipping cross‑platform apps (Flutter/Dart), integrating APIs, and automating releases with CI/CD. Python + PyTorch for ML; currently finishing an MS in CS at DePaul (Nov 2025).</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
         <a class="btn" href="#projects">See Projects</a>
@@ -90,8 +137,7 @@
       <h2>Highlighted Projects</h2>
 
       <div class="grid projects" id="projectGrid">
-        <!-- AirPods IMU (Private Repo) -->
-        <article class="card project" data-tags="flutter ml backend">
+                <article class="card project" data-tags="flutter ml backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop" alt="AirPods IMU project thumbnail"/>
           </div>
@@ -110,8 +156,7 @@
           </div>
         </article>
 
-        <!-- Energy Forecasting (Colab) -->
-        <article class="card project" data-tags="ml backend">
+                <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop" alt="Energy forecasting project thumbnail"/>
           </div>
@@ -129,8 +174,7 @@
           </div>
         </article>
 
-        <!-- Recommender System -->
-        <article class="card project" data-tags="ml backend">
+                <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Recommender system project thumbnail"/>
           </div>
@@ -148,8 +192,7 @@
           </div>
         </article>
 
-        <!-- Heart Disease (R) -->
-        <article class="card project" data-tags="ml backend">
+                <article class="card project" data-tags="ml backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1513224502586-d1e602410265?q=80&w=1200&auto=format&fit=crop" alt="Heart disease prediction R project thumbnail"/>
           </div>
@@ -167,8 +210,7 @@
           </div>
         </article>
 
-        <!-- Kipos Stadia -->
-        <article class="card project" data-tags="flutter backend">
+                <article class="card project" data-tags="flutter backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Kipos Stadia app thumbnail"/>
           </div>
@@ -186,8 +228,7 @@
           </div>
         </article>
 
-        <!-- MOHI -->
-        <article class="card project" data-tags="flutter backend">
+                <article class="card project" data-tags="flutter backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop" alt="MOHI NGO app thumbnail"/>
           </div>
@@ -205,8 +246,7 @@
           </div>
         </article>
 
-        <!-- Toyota (notes) -->
-        <article class="card project" data-tags="flutter backend">
+                <article class="card project" data-tags="flutter backend">
           <div class="thumb" aria-hidden="true">
             <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop" alt="Toyota connected services thumbnail"/>
           </div>
@@ -223,68 +263,64 @@
             </div>
           </div>
         </article>
-      </div>
+  </div>
 
       <p class="small" style="margin-top:12px">Quick links: 
         <a href="https://github.com/eben98/dsc_478_final_project_rec_system/blob/main/final_project.ipynb" target="_blank" rel="noopener">Recommender Systems</a> • 
         <a href="https://github.com/eben98/heart_prediction_with_r/blob/main/Final_project.Rmd" target="_blank" rel="noopener">Heart Disease (R)</a> • 
         <a href="https://colab.research.google.com/github/eben98/csc_578_final_project/blob/main/Final_Project_CSC_578.ipynb" target="_blank" rel="noopener">Energy (NN, Colab)</a>
       </p>
-    </section>
+  </section>
 
-    <section id="experience" class="section container">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="t-item">
-          <span class="t-year">2023 — Present</span>
-          <h3 class="t-title">Graduate Assistant — DePaul University • Chicago, IL</h3>
-          <p class="small">Conducted hands‑on labs in control systems & robotics (MATLAB/Simulink/Arduino). Taught applied computing; improved lab completion by ~30%. Built Flutter apps to collect/analyze device motion for Parkinson’s research and AirPods‑based authentication.</p>
-        </div>
-        <div class="t-item">
-          <span class="t-year">2023 — 2024</span>
-          <h3 class="t-title">Graduate Research Assistant — DePaul University</h3>
-          <p class="small">Mapped gene‑expression patterns to orofacial motor behaviors using Allen Institute data. Built Python pipelines (K‑Means, PCA, custom image analysis) to accelerate analysis by ~30%.</p>
-        </div>
-        <div class="t-item">
-          <span class="t-year">2020 — 2023</span>
-          <h3 class="t-title">Software Engineer (Flutter) — UB Technology Innovations (UBTI) • Chennai, India</h3>
-          <p class="small">Developed & maintained 5+ Flutter apps (Toyota Connected, MOHI, Kipos). Integrated REST/GraphQL, added feature flags, boosted reliability (‑35% post‑release issues). Led UI refactors, testing, and CI/CD practices.</p>
-        </div>
-        <div class="t-item">
-          <span class="t-year">2020</span>
-          <h3 class="t-title">Data Analyst & RPA Developer — UBTI</h3>
-          <p class="small">Built Power Apps/Automate solutions (Nokia, The Hindu, Health India TPA). Automated daily workflows; delivered BI dashboards; improved operational efficiency by ~60%.</p>
-        </div>
+  <section id="experience" class="section container">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-year">Oct 2023 — Present</span>
+        <h3 class="t-title">Graduate Assistant — DePaul University • Chicago, IL</h3>
+        <p class="small">Conducted hands‑on labs in control systems & robotics (MATLAB/Simulink/Arduino). Taught applied computing; improved lab completion by ~30%. Built Flutter apps to collect/analyze device motion for Parkinson’s research and AirPods‑based GAIT authentication.</p>
       </div>
-    </section>
+      <div class="t-item">
+        <span class="t-year">Oct 2023 —  Mar 2024</span>
+        <h3 class="t-title">Graduate Research Assistant — DePaul University</h3>
+        <p class="small">Mapped gene‑expression patterns to orofacial motor behaviors using Allen Institute data. Built Python pipelines (K‑Means, PCA, custom image analysis) to accelerate analysis by ~30%.</p>
+      </div>
+      <div class="t-item">
+        <span class="t-year">Mar 2020 — Jun 2023</span>
+        <h3 class="t-title">Software Engineer (Flutter, Data Analyst & RPA Developer ) — UB Technology Innovations (UBTI)</h3>
+        <p class="small">Developed & maintained 5+ Flutter apps (Toyota Connected, MOHI, Kipos). Integrated REST/GraphQL, added feature flags, boosted reliability (‑35% post‑release issues). Led UI refactors, testing, and CI/CD practices.
+        Built Power Apps/Automate solutions (Nokia, The Hindu, Health India TPA). Automated daily workflows; delivered BI dashboards; improved operational efficiency by ~60%</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="education" class="section container">
-      <h2>Education</h2>
-      <div class="timeline">
-        <div class="t-item">
-          <span class="t-year">2024 — 2025</span>
-          <h3 class="t-title">MS, Computer Science — DePaul University</h3>
-          <p class="small">Expected Nov 2025 • GPA 3.95. Coursework: Applied Algorithms, OOP, Distributed Systems, DBMS, ML, Neural Networks & Deep Learning.</p>
-        </div>
-        <div class="t-item">
-          <span class="t-year">2015 — 2019</span>
-          <h3 class="t-title">BE, Electronics & Communication — Anna University, Chennai</h3>
-          <p class="small">Projects in embedded systems and applied ML; foundations for software & mobile engineering.</p>
-        </div>
+  <section id="education" class="section container">
+    <h2>Education</h2>
+    <div class="timeline">
+      <div class="t-item">
+        <span class="t-year">2023 — 2025</span>
+        <h3 class="t-title">MS, Computer Science — DePaul University</h3>
+        <p class="small">Expected Nov 2025 • GPA 3.95. Coursework: Applied Algorithms, OOP, Distributed Systems, DBMS, ML, Neural Networks & Deep Learning.</p>
       </div>
-    </section>
+      <div class="t-item">
+        <span class="t-year">2015 — 2019</span>
+        <h3 class="t-title">BE, Electronics & Communication — Anna University, Chennai</h3>
+        <p class="small">Projects in embedded systems and applied ML; foundations for software & mobile engineering.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <div class="card">
-        <p class="small">Reach me at <a href="mailto:ebenezerdaniel98@gmail.com">ebenezerdaniel98@gmail.com</a> or on <a href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>.</p>
-        <div class="meta" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email</a>
-          <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+  <section id="contact" class="section container">
+    <h2>Contact</h2>
+    <div class="card">
+      <p class="small">Reach me at <a href="mailto:ebenezerdaniel98@gmail.com">ebenezerdaniel98@gmail.com</a> or on <a href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>.</p>
+      <div class="meta" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email</a>
+        <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-    </section>
+    </div>
+  </section>
   </main>
 
   <footer class="footer">
@@ -303,6 +339,65 @@
       document.body.classList.toggle('light-mode');
       localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
     });
+
+    // --- NEW: All Animation Logic ---
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- 1. Hero Mouse-Follow Background ---
+      const hero = document.getElementById('hero-section');
+      if (hero) {
+        hero.addEventListener('mousemove', (e) => {
+          // Get mouse position relative to the element
+          const rect = hero.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          hero.style.setProperty('--mouse-x', `${x}px`);
+          hero.style.setProperty('--mouse-y', `${y}px`);
+        });
+      }
+
+      // --- 2. Typewriter Effect ---
+      const titleEl = document.getElementById('typewriter-title');
+      if (titleEl) {
+        const originalText = titleEl.textContent;
+        let i = 0;
+        titleEl.textContent = ''; // Clear text
+
+        function typeWriter() {
+          if (i < originalText.length) {
+            titleEl.textContent += originalText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50); // Adjust speed here (milliseconds)
+          }
+        }
+        // Start typing after a short delay
+        setTimeout(typeWriter, 500);
+      }
+
+      // --- 3. 3D Card Tilt Effect ---
+      const cards = document.querySelectorAll('.card.project');
+      const maxRotation = 8; // Max tilt in degrees
+
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const { width, height, left, top } = card.getBoundingClientRect();
+          const x = e.clientX - left;
+          const y = e.clientY - top;
+          
+          // Calculate rotation: -1 to 1, multiplied by maxRotation
+          const rotateX = (maxRotation * (y - height / 2)) / (height / 2) * -1; // Invert X
+          const rotateY = (maxRotation * (x - width / 2)) / (width / 2);
+
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        });
+      });
+
+    });
+    // --- END: All Animation Logic ---
   </script>
 </body>
 </html>
