@@ -3,603 +3,892 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ebenezer Daniel — Software Engineer (Flutter • ML/AI)</title>
-  <meta name="description" content="Flutter-focused Mobile Engineer integrating Data Science, ML, and AI into production apps. Projects, skills, experience, education, and contact." />
-  <meta property="og:title" content="Ebenezer Daniel — Software Engineer (Flutter • ML/AI)" />
-  <meta property="og:description" content="Mobile engineer building intelligent, data-driven Flutter apps with Data Science, ML, and AI." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://avatars.githubusercontent.com/u/41258427" />
-  <meta name="theme-color" content="#0f172a" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://eben98.github.io/" />
-
-  <!-- Twitter Cards -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ebenezer Daniel — Software Engineer (Flutter • ML/AI)">
-  <meta name="twitter:description" content="Mobile engineer building intelligent, data-driven Flutter apps with Data Science, ML, and AI.">
-  <meta name="twitter:image" content="https://avatars.githubusercontent.com/u/41258427">
-
+  <title>Ebenezer Daniel — Mobile & AI Engineer</title>
+  <meta name="description" content="Portfolio of Ebenezer Daniel - Mobile Software Engineer (Flutter/Native) & ML Specialist" />
+  
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>⚡</text></svg>">
-
-  <!-- JSON-LD Person Schema -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Ebenezer Daniel",
-    "jobTitle":"Software Engineer (Flutter • ML/AI)",
-    "url":"https://eben98.github.io/",
-    "sameAs":[
-      "https://www.linkedin.com/in/ebenezer-daniel-i",
-      "https://github.com/eben98"
-    ]
-  }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="https://github.com/eben98.png">
 
   <style>
-    :root{
-      --bg:#0b1020; --card:#0f172a; --muted:#94a3b8; --text:#e5e7eb; --accent:#22d3ee; --ring:#38bdf8;
-      --grad1:#0ea5e9; --grad2:#22d3ee; --grad3:#a78bfa;
-      --shadow-sm:0 1px 2px 0 rgb(0 0 0 / 0.05);
-      --shadow-lg:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    :root {
+      /* Dark Theme Colors (Default) */
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text-main: #c9d1d9;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-dim: rgba(88, 166, 255, 0.15);
+      --code-font: 'JetBrains Mono', monospace;
+      --body-font: 'Inter', sans-serif;
+      --nav-height: 64px;
     }
-    @media (prefers-color-scheme: light){ :root{ --bg:#f8fafc; --card:#ffffff; --muted:#334155; --text:#0b1220; --accent:#0ea5e9; --ring:#0ea5e9; } }
-    *{box-sizing:border-box; transition: all .2s cubic-bezier(0.4,0,0.2,1)}
-    html{scroll-behavior:smooth; scroll-padding-top: 80px;}
-    body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    .nav{position:sticky;top:0;backdrop-filter:saturate(180%) blur(10px);background:color-mix(in srgb, var(--bg), transparent 20%);border-bottom:1px solid color-mix(in srgb, var(--card), transparent 60%);z-index:50}
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 24px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;cursor:pointer}
-    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--grad1),var(--grad2),var(--grad3))}
-    .menu{display:flex;align-items:center;gap:8px}
-    .menu a,.menu button{margin-left:8px;padding:8px 12px;border-radius:10px}
-    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid color-mix(in srgb, var(--ring), transparent 60%);background:linear-gradient(135deg, color-mix(in srgb, var(--card), transparent 0%), color-mix(in srgb, var(--card), transparent 30%)); box-shadow:var(--shadow-sm);position:relative;overflow:hidden;font-weight:600}
-    .btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
-    .btn.disabled{opacity:.6;cursor:not-allowed}
 
-    /* Skip link + focus visible */
-    .skip{position:absolute;left:-9999px;top:auto}
-    .skip:focus{left:16px;top:16px;z-index:1000;background:#fff;color:#000;padding:8px 12px;border-radius:8px}
-    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    body.light-mode {
+      --bg: #ffffff;
+      --card-bg: #f6f8fa;
+      --border: #d0d7de;
+      --text-main: #24292f;
+      --text-muted: #57606a;
+      --accent: #0969da;
+      --accent-dim: rgba(9, 105, 218, 0.1);
+    }
 
-    /* Hero Mouse-Follow Background */
-    .hero { padding: 80px 24px; position: relative; background: radial-gradient( 500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), color-mix(in srgb, var(--accent), transparent 70%), transparent 90% ), var(--bg); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--body-font);
+      line-height: 1.6;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-    .eyebrow{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-    .title{font-size:clamp(32px,6vw,56px);font-weight:800;line-height:1.05;margin:.3em 0;background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3));-webkit-background-clip:text;background-clip:text;color:transparent}
+    a { text-decoration: none; color: inherit; transition: 0.2s; }
+    a:hover { color: var(--accent); }
 
-    /* Typewriter Animation */
-    #typewriter-title { min-height: 1.05em; }
-    #typewriter-title::after { content: '_'; background:linear-gradient(90deg,var(--grad1),var(--grad2),var(--grad3)); -webkit-background-clip:text; background-clip:text; color:transparent; animation: blink 1s infinite; font-weight: 800; }
-    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    /* Utility */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn:hover { border-color: var(--text-muted); background: var(--border); }
+    .btn-primary { background: var(--accent); color: white; border: none; }
+    .btn-primary:hover { opacity: 0.9; background: var(--accent); }
 
-    .lead{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:800px}
-    .section{padding:42px 24px}
-    .section h2{font-size:28px;margin:0 0 16px;position:relative}
-    .section h2::after{content:'';position:absolute;bottom:-8px;left:0;width:60px;height:3px;background:linear-gradient(90deg,var(--grad1),var(--grad2));border-radius:2px}
-    .grid{display:grid;gap:16px}
-    .projects{ grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); perspective: 1000px; }
-    .card{background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 75%);border-radius:16px;padding:18px;box-shadow:var(--shadow-sm);position:relative;overflow:hidden}
-    .card.project { transition: transform 0.1s ease-out; transform-style: preserve-3d; }
-    .card.project:hover { box-shadow: var(--shadow-lg); border-color: var(--accent); }
+    /* Navbar */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+    }
+    body.light-mode .nav { background: rgba(255, 255, 255, 0.85); }
 
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:color-mix(in srgb, var(--card), white 5%);border:1px solid color-mix(in srgb, var(--ring), transparent 70%);font-size:12px;margin:4px 6px 0 0}
-    .thumb{aspect-ratio:16/9;border-radius:14px;background:linear-gradient(135deg,color-mix(in srgb, var(--grad1), transparent 25%), color-mix(in srgb, var(--grad2), transparent 25%));display:flex;align-items:center;justify-content:center;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);overflow:hidden}
-    .thumb img{width:100%;height:100%;object-fit:cover;opacity:.95}
-    .small{color:var(--muted);font-size:14px}
-    .timeline{position:relative;margin-left:10px;padding-left:22px;border-left:2px dashed color-mix(in srgb, var(--ring), transparent 60%)}
-    .timeline::before{content:'';position:absolute;left:-6px;top:0;width:10px;height:10px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent)}
-    .t-item{margin:18px 0}
-    .t-year{display:inline-block;font-weight:700;margin-bottom:8px;color:var(--accent)}
-    .t-title{margin:0}
-    .footer{padding:36px 24px;color:var(--muted);font-size:14px;text-align:center;border-top:1px solid color-mix(in srgb, var(--card), transparent 60%)}
+    .nav-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    /* Active nav state */
-    .menu a[aria-current="true"]{border:1px solid var(--accent); border-radius:10px}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+    }
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){ *{transition:none !important; animation:none !important} .card.project{transform:none !important} }
+    .menu { display: flex; gap: 24px; font-size: 14px; align-items: center; }
+    .menu a { color: var(--text-muted); }
+    .menu a:hover, .menu a[aria-current="true"] { color: var(--accent); }
+    
+    .kbd {
+      font-family: var(--code-font);
+      background: var(--border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: var(--text-main);
+    }
 
-    /* Theme toggle */
-    body.light-mode { --bg:#f8fafc; --card:#ffffff; --muted:#334155; --text:#0b1220; --accent:#0ea5e9; --ring:#0ea5e9; }
-    /* === Skills styles === */
-    .skill-filters{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 16px}
-    .pill{padding:6px 10px;border-radius:999px}
-    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .skill-card{background:var(--card);border:1px solid color-mix(in srgb, var(--ring), transparent 75%);border-radius:16px;padding:16px}
-    .skill-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
-    .skill-ico{font-size:20px}
-    .skill-pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0}
-    .skill-pills li{padding:6px 10px;border:1px solid color-mix(in srgb, var(--ring), transparent 70%);border-radius:999px;background:color-mix(in srgb, var(--card), white 5%);font-size:13px}
-    .filter.is-active{border-color:var(--accent)}
-    /* appear animation */
-    .anim{opacity:0;transform:translateY(12px);} .anim.in{opacity:1;transform:translateY(0);transition:opacity .4s ease, transform .4s ease}
+    /* Search Modal */
+    #search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      z-index: 200;
+      display: none; 
+      align-items: start;
+      justify-content: center;
+      padding-top: 15vh;
+    }
+    #search-overlay.open { display: flex; animation: fadeIn 0.2s ease-out; }
+    
+    .search-modal {
+      width: 100%;
+      max-width: 600px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      overflow: hidden;
+    }
+    
+    .search-head {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .search-head input {
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      color: var(--text-main);
+      width: 100%;
+      outline: none;
+      font-family: var(--body-font);
+    }
+    .search-results {
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 8px;
+    }
+    .result-item {
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+    }
+    .result-item:hover, .result-item.selected {
+      background: var(--card-bg);
+      color: var(--text-main);
+    }
+    .result-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 80px 0;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .hero { grid-template-columns: 1fr; padding: 40px 0; } }
+
+    .hero-content h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      margin: 0 0 16px 0;
+      line-height: 1.1;
+    }
+    .hero-content .lead {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+    
+    /* Terminal Effect */
+    .terminal {
+      background: #1e1e1e;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid #333;
+      overflow: hidden;
+      font-family: var(--code-font);
+      font-size: 13px;
+    }
+    .terminal-bar {
+      background: #252526;
+      padding: 8px 12px;
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px solid #333;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+    
+    .terminal-body { padding: 20px; color: #d4d4d4; }
+    .cmd { color: #58a6ff; margin-right: 8px; }
+    .string { color: #a5d6ff; }
+    .variable { color: #79c0ff; }
+    .comment { color: #6a9955; display: block; margin-top: 8px; }
+    .cursor { display: inline-block; width: 8px; height: 16px; background: #d4d4d4; animation: blink 1s step-end infinite; vertical-align: middle; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* Skills Grid */
+    .skills-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .skill-category h3 { font-size: 16px; color: var(--accent); margin-bottom: 12px; }
+    .skill-list { list-style: none; padding: 0; margin: 0; }
+    .skill-list li { 
+      margin-bottom: 8px; 
+      font-size: 14px; 
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-list li::before {
+      content: "▹";
+      color: var(--accent);
+      font-size: 12px;
+    }
+
+    /* Projects Grid */
+    .section-title { font-size: 24px; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+    
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    
+    .card-img {
+      height: 180px;
+      background: #000;
+      position: relative;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: opacity 0.3s, transform 0.5s;
+    }
+    .card:hover .card-img img { opacity: 1; transform: scale(1.05); }
+    
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .card h3 { margin: 0 0 8px 0; font-size: 18px; }
+    .card p { font-size: 14px; color: var(--text-muted); flex: 1; margin-bottom: 16px; }
+    
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .tag {
+      font-size: 12px;
+      font-family: var(--code-font);
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    /* Experience Timeline */
+    .timeline-item {
+      padding-left: 24px;
+      border-left: 2px solid var(--border);
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+    }
+    .timeline-date { font-family: var(--code-font); font-size: 12px; color: var(--text-muted); }
+    .timeline-role { font-weight: 600; font-size: 18px; margin: 4px 0; }
+    .timeline-org { color: var(--accent); margin-bottom: 8px; display: block; font-size: 14px; }
+    .timeline-desc { font-size: 14px; color: var(--text-muted); }
+
+    /* Certifications Compact Grid */
+    .cert-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      transition: 0.2s;
+    }
+    .cert-card:hover { border-color: var(--accent); background: var(--bg); }
+    .cert-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: block; }
+    .cert-issuer { font-size: 12px; color: var(--text-muted); display: block; }
+    .cert-date { font-family: var(--code-font); font-size: 11px; color: var(--accent); margin-top: 8px; display: block; }
+
+    /* Footer */
+    footer { padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; text-align: center; color: var(--text-muted); font-size: 14px; }
+    
+    /* Animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
   </style>
 </head>
 <body>
-  <!-- Skip to content link for accessibility -->
-  <a href="#projects" class="skip">Skip to main content</a>
 
-  <header class="nav">
-    <div class="nav-inner container">
-      <div class="brand" onclick="document.querySelector('.hero').scrollIntoView({behavior:'smooth'})"><span class="dot"></span><span>Ebenezer Daniel</span></div>
-      <nav class="menu">
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-        <button id="themeToggle" class="btn" style="padding:6px 10px">🌗 Theme</button>
-      </nav>
+  <!-- Search Modal Overlay -->
+  <div id="search-overlay">
+    <div class="search-modal">
+      <div class="search-head">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        <input type="text" id="search-input" placeholder="Jump to projects, skills, or experience..." autocomplete="off">
+        <span class="kbd">ESC</span>
+      </div>
+      <div class="search-results" id="search-results">
+        <!-- Results injected via JS -->
+      </div>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="hero container" id="hero-section">
-      <p class="eyebrow">Software Engineer • Flutter • ML/AI</p>
-      <h1 class="title" id="typewriter-title">I build intelligent, data-driven Flutter apps powered by Data Science, Machine Learning, and AI.</h1>
-      <p class="lead">Flutter-first mobile engineer blending software craftsmanship with Data Science, ML, and AI. I ship reliable iOS/Android apps, wire up APIs and cloud pipelines, and turn sensor & event data into intelligent product features. Open to Software, ML, and Data Engineering roles.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
-        <a class="btn" href="#projects">See Projects</a>
-        <a class="btn" href="/Ebenezer_Daniel_resume.pdf" target="_blank" rel="noopener">Download Résumé</a>
-        <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub ↗</a>
-        <a class="btn" href="mailto:ebenezerdaniel98@gmail.com?subject=Interview%20Inquiry">Hire Me</a>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <!-- Using GitHub avatar as it's reliable for developer portfolios -->
+        <img src="https://github.com/eben98.png" alt="Ebenezer Daniel" loading="lazy">
+        <span>eben.dev</span>
+      </a>
+      
+      <div class="menu">
+        <a href="#skills" class="hidden-mobile">Skills</a>
+        <a href="#projects" class="hidden-mobile">Projects</a>
+        <a href="#experience" class="hidden-mobile">Experience</a>
+        <button id="search-trigger" class="btn" title="Press Ctrl+K">
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right:0"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <span class="kbd">Cmd+K</span>
+        </button>
+        <button id="theme-toggle" class="btn" style="padding: 8px;">
+          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </button>
       </div>
-    </section>
+    </div>
+  </nav>
 
-    <section id="projects" class="section container">
-      <h2>Highlighted Projects</h2>
-
-      <div class="grid projects" id="projectGrid">
-        <article class="card project" data-tags="flutter ml backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1200&auto=format&fit=crop" alt="AirPods IMU project thumbnail"/>
-          </div>
-          <div>
-            <h3>AirPods IMU — Gait Authentication (Flutter + FastAPI)</h3>
-            <p class="small">Flutter app streaming AirPods motion data (DeviceMotion + BLE) into a FastAPI backend; PyTorch models served over WebSockets for low-latency inference.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Implemented native iOS channels to access sensor data and stream to Flutter in real time.</li>
-                <li>Designed a simple schema for event ingestion and model outputs over WebSockets.</li>
-                <li>Built data prep & evaluation notebooks to iterate on features and model choices.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> robust live streaming and sub‑200ms inference in local tests; user testing ongoing.</p>
-            <div class="meta">
-              <span class="badge">Flutter</span>
-              <span class="badge">FastAPI</span>
-              <span class="badge">PyTorch</span>
-              <span class="badge">WebSockets</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <span class="btn disabled" title="Private Repo">Private Repo</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="ml backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop" alt="Energy forecasting project thumbnail"/>
-          </div>
-          <div>
-            <h3>Predicting Hourly Energy Consumption with Weather (Neural Networks)</h3>
-            <p class="small">CNN‑LSTM forecasting for the ComEd region using weather from 18 Meteostat stations; includes cleaning, feature engineering, and training/evaluation notebooks.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Joined 1M+ energy & weather records; engineered lagged and interaction features.</li>
-                <li>Benchmarked classical baselines vs deep models; tracked MAE/MAPE.</li>
-                <li>Packaged data and training loops for reproducible runs in Colab.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> improved MAE vs seasonal baseline with a maintainable pipeline.</p>
-            <div class="meta">
-              <span class="badge">PyTorch</span>
-              <span class="badge">Time Series</span>
-              <span class="badge">pandas</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://colab.research.google.com/github/eben98/csc_578_final_project/blob/main/Final_Project_CSC_578.ipynb" target="_blank" rel="noopener">Open in Colab ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="ml backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop" alt="Recommender system project thumbnail"/>
-          </div>
-          <div>
-            <h3>Recommender System — Item‑Based Similarity</h3>
-            <p class="small">Item‑item CF with cosine similarity, sparse matrix utilities, MAE metrics, and debugging hooks for hidden tests.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Built similarity search and top‑K retrieval with light‑weight vector ops.</li>
-                <li>Wrote evaluation utilities and quick‑look plots for sanity checking.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> reproducible offline evaluation and explainable recs.</p>
-            <div class="meta">
-              <span class="badge">Python</span>
-              <span class="badge">NumPy</span>
-              <span class="badge">Recommenders</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://github.com/eben98/dsc_478_final_project_rec_system/blob/main/final_project.ipynb" target="_blank" rel="noopener">GitHub ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="ml backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1513224502586-d1e602410265?q=80&w=1200&auto=format&fit=crop" alt="Heart disease prediction R project thumbnail"/>
-          </div>
-          <div>
-            <h3>Heart Disease Prediction (R)</h3>
-            <p class="small">End‑to‑end R pipeline (tidyverse + caret): feature engineering, model comparison, and RMarkdown reporting.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Explored feature importance across several ML models.</li>
-                <li>Automated report with knitted RMarkdown for clear comparisons.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> auditable model selection and reproducible report.</p>
-            <div class="meta">
-              <span class="badge">R</span>
-              <span class="badge">Caret</span>
-              <span class="badge">RMarkdown</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://github.com/eben98/heart_prediction_with_r/blob/main/Final_project.Rmd" target="_blank" rel="noopener">View Rmd ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="flutter backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Kipos Stadia app thumbnail"/>
-          </div>
-          <div>
-            <h3>Kipos Stadia — Church Networking App</h3>
-            <p class="small">Implemented Learn (articles), Post (UGC), and View Profile; improved stability and performance with profiling and test coverage.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Shipped features behind flags to de‑risk releases.</li>
-                <li>Improved responsiveness and fixed top crashes with instrumentation.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> better responsiveness and reliability in production.</p>
-            <div class="meta">
-              <span class="badge">Flutter</span>
-              <span class="badge">Firebase</span>
-              <span class="badge">REST APIs</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://stadia.org/kipos/" target="_blank" rel="noopener">Live ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="flutter backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?q=80&w=1200&auto=format&fit=crop" alt="MOHI NGO app thumbnail"/>
-          </div>
-          <div>
-            <h3>MOHI — NGO Teacher & Social Worker Apps</h3>
-            <p class="small">Redesigned apps with attendance tracking & workflow engines; ~30% performance gains and ~40% task efficiency.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Refactored state management; profiled and removed hotspots.</li>
-                <li>Improved offline workflows and reduced error surfaces.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> faster flows and fewer support tickets.</p>
-            <div class="meta">
-              <span class="badge">Flutter</span>
-              <span class="badge">Performance</span>
-              <span class="badge">State Management</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" rel="noopener">Play Store ↗</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="card project" data-tags="flutter backend">
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1502877338535-766e1452684a?q=80&w=1200&auto=format&fit=crop" alt="Toyota connected services thumbnail"/>
-          </div>
-          <div>
-            <h3>Toyota Connected Services — Subscriptions Module</h3>
-            <p class="small">Hybrid app integration across iOS/Android; implemented subscriptions flow; raised reliability with crash‑fixes and instrumentation.</p>
-            <details class="small"><summary>What I did</summary>
-              <ul>
-                <li>Integrated Flutter module into existing native surfaces.</li>
-                <li>Instrumented critical paths; addressed stability regressions.</li>
-              </ul>
-            </details>
-            <p class="small"><strong>Outcome:</strong> smoother purchase flow and fewer crashes.</p>
-            <div class="meta">
-              <span class="badge">Flutter</span>
-              <span class="badge">iOS</span>
-              <span class="badge">Android</span>
-            </div>
-            <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="btn" href="https://www.toyota.com/connected-services/toyota-app/" target="_blank" rel="noopener">Link ↗</a>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <p class="small" style="margin-top:12px">Quick links: 
-        <a href="https://github.com/eben98/dsc_478_final_project_rec_system/blob/main/final_project.ipynb" target="_blank" rel="noopener">Recommender Systems</a> • 
-        <a href="https://github.com/eben98/heart_prediction_with_r/blob/main/Final_project.Rmd" target="_blank" rel="noopener">Heart Disease (R)</a> • 
-        <a href="https://colab.research.google.com/github/eben98/csc_578_final_project/blob/main/Final_Project_CSC_578.ipynb" target="_blank" rel="noopener">Energy (NN, Colab)</a>
-      </p>
-    </section>
-
-    <!-- Skills section -->
-    <section id="skills" class="section container" aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills & Tools</h2>
-
-      <!-- Filters -->
-      <div class="skill-filters" role="tablist" aria-label="Skill categories">
-        <button class="btn pill filter is-active" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="btn pill filter" data-filter="mobile" role="tab" aria-selected="false">📱 Mobile</button>
-        <button class="btn pill filter" data-filter="ml" role="tab" aria-selected="false">🧠 ML/AI</button>
-        <button class="btn pill filter" data-filter="cloud" role="tab" aria-selected="false">☁️ Cloud/DevOps</button>
-        <button class="btn pill filter" data-filter="data" role="tab" aria-selected="false">💾 Data</button>
-        <button class="btn pill filter" data-filter="web" role="tab" aria-selected="false">🧩 Web/API</button>
-        <button class="btn pill filter" data-filter="arch" role="tab" aria-selected="false">🏗️ Architecture</button>
-        <button class="btn pill filter" data-filter="research" role="tab" aria-selected="false">🔬 Research</button>
-      </div>
-
-      <!-- Grid -->
-      <div class="skills-grid">
-        <article class="skill-card anim" data-topic="mobile" tabindex="0" aria-label="Mobile App Development">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">📱</span>
-            <h3>Mobile App Development</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>Flutter</li><li>Dart</li><li>Swift</li><li>Kotlin</li><li>Firebase</li><li>Platform Channels</li>
-            <li>Bloc</li><li>Provider</li><li>Riverpod</li><li>GetX</li><li>React Native</li><li>Figma</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="ml" tabindex="0" aria-label="Machine Learning and AI">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">🧠</span>
-            <h3>Machine Learning & AI</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>Python</li><li>NumPy</li><li>pandas</li><li>scikit-learn</li><li>TensorFlow</li><li>PyTorch</li>
-            <li>LSTM</li><li>CNN</li><li>Autoencoders</li><li>RAG</li><li>Generative AI</li><li>Agentic AI</li>
-            <li>Prompt Engineering</li><li>TensorFlow Lite</li><li>Core ML</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="cloud" tabindex="0" aria-label="Cloud and DevOps">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">☁️</span>
-            <h3>Cloud & DevOps</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>AWS S3</li><li>EC2</li><li>EMR</li><li>SageMaker</li><li>Lambda</li><li>GCP</li><li>Docker</li>
-            <li>GitHub Actions</li><li>GitLab CI</li><li>Codemagic</li><li>Bitrise</li><li>Linux</li><li>Terraform</li>
-            <li>MLflow</li><li>DVC</li><li>Weights & Biases</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="data" tabindex="0" aria-label="Data Engineering and Analytics">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">💾</span>
-            <h3>Data Engineering & Analytics</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>SQL</li><li>MySQL</li><li>MongoDB</li><li>Oracle</li><li>Spark</li><li>Hadoop</li><li>ETL</li>
-            <li>Time‑Series</li><li>Power BI</li><li>Power Apps</li><li>Power Automate</li><li>Plotly</li><li>Matplotlib</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="web" tabindex="0" aria-label="Web and API Development">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">🧩</span>
-            <h3>Web & API Development</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>FastAPI</li><li>Flask</li><li>Node.js</li><li>Express</li><li>Next.js</li><li>React</li>
-            <li>REST</li><li>GraphQL</li><li>gRPC</li><li>Protobuf</li><li>OAuth2</li><li>JWT</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="arch" tabindex="0" aria-label="Software Engineering and Architecture">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">🏗️</span>
-            <h3>Software Engineering & Architecture</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>Java</li><li>JavaScript</li><li>TypeScript</li><li>C</li><li>C++</li><li>C#</li><li>.NET</li><li>R</li><li>Scala</li>
-            <li>OOP</li><li>MVC</li><li>MVVM</li><li>Clean Architecture</li><li>Testing (Flutter/Pytest)</li>
-          </ul>
-        </article>
-
-        <article class="skill-card anim" data-topic="research" tabindex="0" aria-label="Research and Experimentation">
-          <header class="skill-head">
-            <span class="skill-ico" aria-hidden="true">🔬</span>
-            <h3>Research & Experimentation</h3>
-          </header>
-          <ul class="skill-pills">
-            <li>MATLAB</li><li>Simulink</li><li>Arduino</li><li>Raspberry Pi</li><li>IMU/Sensor Fusion</li><li>Signal Processing</li>
-            <li>Experiment Design</li><li>Model Evaluation</li>
-          </ul>
-        </article>
-      </div>
-
-      <p class="small" style="margin-top:12px">Analytics & Product: Firebase Analytics, Mixpanel, Amplitude • Collaboration: Jira, Agile/Scrum • IDEs: VS Code, Android Studio, Xcode</p>
-    </section>
-
-    <section id="experience" class="section container">
-      <h2>Experience</h2>
-      <div class="timeline">
-        <div class="t-item">
-          <span class="t-year">Oct 2023 — Present</span>
-          <h3 class="t-title">Graduate Assistant — DePaul University • Chicago, IL</h3>
-          <p class="small">Conducted hands‑on labs in control systems & robotics (MATLAB/Simulink/Arduino). Taught applied computing; improved lab completion by ~30%. Built Flutter apps to collect/analyze device motion for Parkinson’s research and AirPods‑based gait authentication.</p>
+  <main class="container">
+    
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <p style="color: var(--accent); font-family: var(--code-font); margin-bottom: 12px; font-size: 14px;">$ ./welcome.sh</p>
+        <h1>Ebenezer Daniel</h1>
+        <p class="lead">
+          Mobile Software Engineer building <strong>intelligent, cross-platform apps</strong> with Flutter & AI. 
+          Expertise in uniting mobile architecture with data science pipelines.
+        </p>
+        <div style="display: flex; gap: 12px;">
+          <a href="#projects" class="btn btn-primary">View Portfolio</a>
+          <a href="https://github.com/eben98" target="_blank" class="btn">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="margin-right:6px"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            GitHub
+          </a>
         </div>
-        <div class="t-item">
-          <span class="t-year">Oct 2023 — Mar 2024</span>
-          <h3 class="t-title">Graduate Research Assistant — DePaul University</h3>
-          <p class="small">Mapped gene‑expression patterns to orofacial motor behaviors using Allen Institute data. Built Python pipelines (K‑Means, PCA, custom image analysis) to accelerate analysis by ~30%.</p>
+      </div>
+
+      <!-- Terminal Graphic -->
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
         </div>
-        <div class="t-item">
-          <span class="t-year">Mar 2020 — Jun 2023</span>
-          <h3 class="t-title">Software Engineer (Flutter, Data Analyst & RPA Developer) — UB Technology Innovations (UBTI)</h3>
-          <p class="small">Developed & maintained 5+ Flutter apps (Toyota Connected, MOHI, Kipos). Integrated REST/GraphQL, added feature flags, boosted reliability (‑35% post‑release issues). Led UI refactors, testing, and CI/CD practices. Built Power Apps/Automate solutions (Nokia, The Hindu, Health India TPA). Automated daily workflows; delivered BI dashboards; improved operational efficiency by ~60%.</p>
+        <div class="terminal-body">
+          <div><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">whoami</span></div>
+          <div style="margin-bottom: 12px; color: var(--accent);">Ebenezer Daniel</div>
+          
+          <div><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">cat current_focus.json</span></div>
+          <div style="color: #e3b341;">{</div>
+          <div style="padding-left: 20px;">
+            <span class="variable">"role"</span>: <span class="string">"Mobile Engineer"</span>,<br>
+            <span class="variable">"stack"</span>: [<span class="string">"Flutter"</span>, <span class="string">"Swift"</span>, <span class="string">"Kotlin"</span>],<br>
+            <span class="variable">"ai_stack"</span>: [<span class="string">"PyTorch"</span>, <span class="string">"TensorFlow"</span>],<br>
+            <span class="variable">"location"</span>: <span class="string">"Chicago, IL"</span><br>
+          </div>
+          <div style="color: #e3b341; margin-bottom: 12px;">}</div>
+
+          <div><span class="cmd">➜</span> <span class="string">~</span> <span class="cursor"></span></div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Skills Section (New) -->
+    <section id="skills" style="padding-top: 60px;">
+      <h2 class="section-title">Tech Stack</h2>
+      <div class="skills-section">
+        <div class="skill-category search-item" data-title="Mobile Skills" data-tags="Flutter, Dart, Swift, Kotlin, React Native">
+          <h3>📱 Mobile & Frontend</h3>
+          <ul class="skill-list">
+            <li>Flutter & Dart (Expert)</li>
+            <li>Swift (iOS Native)</li>
+            <li>Kotlin (Android Native)</li>
+            <li>React & Next.js</li>
+            <li>Firebase & Clean Arch</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category search-item" data-title="AI & ML Skills" data-tags="Python, PyTorch, TensorFlow, Pandas">
+          <h3>🧠 AI & Machine Learning</h3>
+          <ul class="skill-list">
+            <li>Python & Pandas</li>
+            <li>PyTorch & TensorFlow</li>
+            <li>Scikit-learn</li>
+            <li>Computer Vision</li>
+            <li>Generative AI / RAG</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category search-item" data-title="Cloud & DevOps Skills" data-tags="AWS, Docker, CI/CD, Git">
+          <h3>☁️ Cloud & DevOps</h3>
+          <ul class="skill-list">
+            <li>AWS (S3, EC2, SageMaker)</li>
+            <li>Docker & Kubernetes</li>
+            <li>CI/CD (GitHub Actions)</li>
+            <li>Git & GitLab</li>
+            <li>GCP Services</li>
+          </ul>
+        </div>
+        
+        <div class="skill-category search-item" data-title="Core & Automation Skills" data-tags="Java, SQL, PowerPlatform">
+          <h3>⚙️ Core & Automation</h3>
+          <ul class="skill-list">
+            <li>Java & C++</li>
+            <li>SQL & NoSQL</li>
+            <li>Power Platform (Apps/BI)</li>
+            <li>System Design</li>
+            <li>Agile & Scrum</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="education" class="section container">
-      <h2>Education</h2>
-      <div class="timeline">
-        <div class="t-item">
-          <span class="t-year">2023 — 2025</span>
-          <h3 class="t-title">MS, Computer Science — DePaul University</h3>
-          <p class="small">Expected Nov 2025 • GPA 3.95. Coursework: Applied Algorithms, OOP, Distributed Systems, DBMS, ML, Neural Networks & Deep Learning.</p>
+    <!-- Projects -->
+    <section id="projects" style="padding-top: 60px;">
+      <h2 class="section-title">
+        Featured Projects
+      </h2>
+      
+      <div class="grid">
+        <!-- Project 1 -->
+        <article class="card search-item" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop" alt="Wireless Earbuds">
+          </div>
+          <div class="card-body">
+            <h3>AirPods Gait Auth</h3>
+            <p>Real-time authentication using AirPods IMU data. Built a custom Flutter Event Channel for iOS sensors and a Python ML backend, boosting auth accuracy by 85%.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">FastAPI</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="card search-item" data-title="Toyota Connected Services" data-tags="Flutter, iOS, Android, Enterprise">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop" alt="Connected Car Dashboard">
+          </div>
+          <div class="card-body">
+            <h3>Toyota Connected Services</h3>
+            <p>Integrated a Flutter subscription module into native iOS/Android apps. Optimized performance and reduced crash rates in a large-scale enterprise environment.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Swift/Kotlin</span>
+              <span class="tag">CI/CD</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Project 3: Distributed Systems (New) -->
+        <article class="card search-item" data-title="Distributed File Retrieval" data-tags="Java, Distributed Systems, Concurrency">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1558494949-ef2bb6db8744?q=80&w=800&auto=format&fit=crop" alt="Server Racks">
+          </div>
+          <div class="card-body">
+            <h3>Distributed File Retrieval</h3>
+            <p>Simulated a fault-tolerant file retrieval engine in Java using TCP/IP sockets. Implemented logical clocks, leader election, and mutual exclusion algorithms.</p>
+            <div class="tags">
+              <span class="tag">Java</span>
+              <span class="tag">Multi-threading</span>
+              <span class="tag">TCP/IP</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="card search-item" data-title="Genome Assembly & Analysis" data-tags="Python, Data Science, Research">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800&auto=format&fit=crop" alt="DNA Structure">
+          </div>
+          <div class="card-body">
+            <h3>Genome Assembly</h3>
+            <p>Reconstructed bacterial genomes from mosquito species using de novo assembly. Built Python pipelines (K-Means, PCA) to map gene expression to motor behaviors.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Bioinformatics</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="card search-item" data-title="Kipos Stadia" data-tags="Flutter, Firebase, Social">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800&auto=format&fit=crop" alt="Community App Concept">
+          </div>
+          <div class="card-body">
+            <h3>Kipos Stadia</h3>
+            <p>Church networking app with social feeds and article learning. Integrated REST/GraphQL and improved stability by resolving critical bugs.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">GraphQL</span>
+              <span class="tag">Firebase</span>
+            </div>
+          </div>
+        </article>
+        
+        <!-- Project 6 -->
+        <article class="card search-item" data-title="MOHI NGO Apps" data-tags="Flutter, Offline-First, Social Good">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" alt="Education Technology">
+          </div>
+          <div class="card-body">
+            <h3>MOHI NGO Apps</h3>
+            <p>Redesigned attendance and workflow apps for social workers. Improved task efficiency by 40% and app performance by 30%.</p>
+            <div class="tags">
+              <span class="tag">Flutter</span>
+              <span class="tag">Performance</span>
+            </div>
+          </div>
+        </article>
+
+         <!-- Project 7 -->
+        <article class="card search-item" data-title="Power Platform Automation" data-tags="PowerApps, SQL, Automation">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data Dashboard">
+          </div>
+          <div class="card-body">
+            <h3>Enterprise Automation</h3>
+            <p>Built Power Apps and Automate workflows for Nokia, The Hindu, and Health India TPA, boosting operational efficiency by up to 60%.</p>
+            <div class="tags">
+              <span class="tag">PowerApps</span>
+              <span class="tag">SQL</span>
+              <span class="tag">PowerBI</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" style="padding-top: 80px;">
+      <h2 class="section-title">Professional Experience</h2>
+      
+      <div class="timeline-item search-item" data-title="Graduate Assistant" data-tags="Teaching, Robotics, Flutter">
+        <div class="timeline-date">Oct 2023 — Present</div>
+        <div class="timeline-role">Graduate Assistant</div>
+        <span class="timeline-org">DePaul University • Chicago, IL</span>
+        <div class="timeline-desc">
+          <ul>
+            <li>Taught labs in robotics and Raspberry Pi, improving completion rates by 30%.</li>
+            <li>Developed a Flutter app for Parkinson's disease research to analyze sensor data.</li>
+            <li>Built the AirPods gait authentication system with Python ML pipelines.</li>
+          </ul>
         </div>
-        <div class="t-item">
-          <span class="t-year">2015 — 2019</span>
-          <h3 class="t-title">BE, Electronics & Communication — Anna University, Chennai</h3>
-          <p class="small">Projects in embedded systems and applied ML; foundations for software & mobile engineering.</p>
+      </div>
+      
+      <div class="timeline-item search-item" data-title="Intel Student Ambassador" data-tags="Data Analysis, Gene Sequencing">
+        <div class="timeline-date">Oct 2023 — Present</div>
+        <div class="timeline-role">Intel Student Ambassador</div>
+        <span class="timeline-org">Intel Corporation • Chicago, IL</span>
+        <div class="timeline-desc">
+          <ul>
+            <li>Analyzed gene data from Allen's Mouse Brain Data using Intel optimization tools.</li>
+            <li>Filtered invalid values and identified unique genes in Coronal/Sagittal datasets to find correlations.</li>
+            <li>Developed skills in high-performance data analysis and gene sequencing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item search-item" data-title="Graduate Research Assistant" data-tags="Research, Python, Data Science">
+        <div class="timeline-date">Sep 2023 — Mar 2024</div>
+        <div class="timeline-role">Graduate Research Assistant</div>
+        <span class="timeline-org">DePaul University</span>
+        <div class="timeline-desc">
+          <ul>
+            <li>Leveraged Allen Institute data to map gene expression to motor behaviors.</li>
+            <li>Built end-to-end Python analysis pipelines using K-Means and PCA.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item search-item" data-title="Software Engineer" data-tags="Flutter, Dart, CI/CD">
+        <div class="timeline-date">Oct 2020 — Jun 2023</div>
+        <div class="timeline-role">Software Engineer (Flutter)</div>
+        <span class="timeline-org">UB Technology Innovations</span>
+        <div class="timeline-desc">
+          <ul>
+            <li>Built 5+ responsive Flutter apps including Toyota Connected and Kipos Stadia.</li>
+            <li>Cut post-release issues by 35% through rigorous bug triage.</li>
+            <li>Integrated GraphQL/REST and server-driven UI modules.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item search-item" data-title="Data Analyst & RPA Dev" data-tags="Power Platform, SQL">
+        <div class="timeline-date">Mar 2020 — Oct 2020</div>
+        <div class="timeline-role">Data Analyst & RPA Developer</div>
+        <span class="timeline-org">UB Technology Innovations</span>
+        <div class="timeline-desc">
+          <ul>
+            <li>Enhanced visitor management for Nokia and HR apps for Health India TPA.</li>
+            <li>Created Power BI dashboards and Power Automate workflows, saving daily manual effort.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section container">
-      <h2>Contact</h2>
-      <div class="card">
-        <p class="small">Reach me at <a href="mailto:ebenezerdaniel98@gmail.com">ebenezerdaniel98@gmail.com</a> or on <a href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>.</p>
-        <div class="meta" style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
-          <a class="btn" href="mailto:ebenezerdaniel98@gmail.com">Email</a>
-          <a class="btn" href="https://github.com/eben98" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/ebenezer-daniel-i" target="_blank" rel="noopener">LinkedIn</a>
+    <!-- Education -->
+    <section id="education" style="padding-top: 60px;">
+      <h2 class="section-title">Education</h2>
+       <div class="timeline-item search-item" data-title="MS Computer Science" data-tags="Education, CS">
+        <div class="timeline-date">Expected Nov 2025</div>
+        <div class="timeline-role">Master of Science in Computer Science (GPA 3.95)</div>
+        <span class="timeline-org">DePaul University, Chicago</span>
+        <div class="timeline-desc">
+          Coursework: Distributed Systems, Neural Networks, Deep Learning, NLP.
         </div>
       </div>
+       <div class="timeline-item search-item" data-title="BE Electronics" data-tags="Education, Engineering">
+        <div class="timeline-date">May 2019</div>
+        <div class="timeline-role">Bachelor of Engineering in ECE</div>
+        <span class="timeline-org">Anna University, Chennai</span>
+      </div>
     </section>
+    
+    <!-- Certifications Section -->
+    <section id="certifications" style="padding-top: 60px;">
+      <h2 class="section-title">Certifications</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+        
+        <div class="cert-card search-item" data-title="Working with Hugging Face" data-tags="AI, DataCamp">
+          <span class="cert-title">Working with Hugging Face</span>
+          <span class="cert-issuer">DataCamp</span>
+          <span class="cert-date">Nov 2025</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Working with OpenAI API" data-tags="AI, DataCamp">
+          <span class="cert-title">Working with OpenAI API</span>
+          <span class="cert-issuer">DataCamp</span>
+          <span class="cert-date">Nov 2025</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="How AI Works" data-tags="AI, Brilliant">
+          <span class="cert-title">How AI Works</span>
+          <span class="cert-issuer">Brilliant.org</span>
+          <span class="cert-date">Apr 2025</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Computational Biology" data-tags="Biology, Brilliant">
+          <span class="cert-title">Computational Biology</span>
+          <span class="cert-issuer">Brilliant.org</span>
+          <span class="cert-date">Aug 2022</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Algorithm Fundamentals" data-tags="CS, Brilliant">
+          <span class="cert-title">Algorithm Fundamentals</span>
+          <span class="cert-issuer">Brilliant.org</span>
+          <span class="cert-date">Jul 2022</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Computer Science Fundamentals" data-tags="CS, Brilliant">
+          <span class="cert-title">Computer Science Fundamentals</span>
+          <span class="cert-issuer">Brilliant.org</span>
+          <span class="cert-date">Jun 2022</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Agile Project Management & Scrum" data-tags="Agile, OpenClassrooms">
+          <span class="cert-title">Agile & Scrum</span>
+          <span class="cert-issuer">OpenClassrooms</span>
+          <span class="cert-date">Apr 2022</span>
+        </div>
+        
+        <div class="cert-card search-item" data-title="Digital Skills: AI" data-tags="AI, Accenture">
+          <span class="cert-title">Digital Skills: AI</span>
+          <span class="cert-issuer">Accenture</span>
+          <span class="cert-date">Sep 2021</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="MS Power Platform Fundamentals" data-tags="Microsoft, PowerPlatform">
+          <span class="cert-title">Power Platform Fundamentals</span>
+          <span class="cert-issuer">Microsoft</span>
+          <span class="cert-date">Sep 2021</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="MS Power Platform Functional Consultant" data-tags="Microsoft, PowerPlatform">
+          <span class="cert-title">Power Platform Consultant</span>
+          <span class="cert-issuer">Microsoft</span>
+          <span class="cert-date">Apr 2021</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="MS Power Platform App Maker" data-tags="Microsoft, PowerPlatform">
+          <span class="cert-title">Power Platform App Maker</span>
+          <span class="cert-issuer">Microsoft</span>
+          <span class="cert-date">Jan 2021</span>
+        </div>
+        
+        <div class="cert-card search-item" data-title="DNA Decoded" data-tags="Biology, McMaster">
+          <span class="cert-title">DNA Decoded</span>
+          <span class="cert-issuer">McMaster University</span>
+          <span class="cert-date">Feb 2021</span>
+        </div>
+
+        <div class="cert-card search-item" data-title="Front End Web Development" data-tags="Web, upGrad">
+          <span class="cert-title">Front End Web Development</span>
+          <span class="cert-issuer">upGrad</span>
+          <span class="cert-date">Jul 2020</span>
+        </div>
+
+      </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; <span id="year"></span> Ebenezer Daniel. Built with standard web technologies.</p>
+      <div style="margin-top: 10px;">
+        <a href="https://github.com/eben98" style="margin: 0 10px;">GitHub</a>
+        <a href="https://linkedin.com/in/ebenezer-daniel-i" style="margin: 0 10px;">LinkedIn</a>
+        <a href="mailto:ebenezerdaniel98@gmail.com" style="margin: 0 10px;">Email</a>
+      </div>
+    </footer>
+
   </main>
 
-  <footer class="footer">
-    <span>© <span id="y"></span> Ebenezer Daniel. Built with vanilla HTML/CSS/JS. Hosted on GitHub Pages.</span>
-  </footer>
-
-  <!-- Privacy-friendly analytics (optional) -->
-  <script defer data-domain="eben98.github.io" src="https://plausible.io/js/script.js"></script>
-
   <script>
-    // --- All Animation + Nav + Skills Logic ---
-    document.addEventListener('DOMContentLoaded', () => {
-      // Year (place after DOM loaded to ensure #y exists)
-      const yEl = document.getElementById('y');
-      if (yEl) yEl.textContent = new Date().getFullYear();
+    // 1. Theme Toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-mode');
+    }
 
-      // Theme toggle persist
-      const toggle = document.getElementById('themeToggle');
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') document.body.classList.add('light-mode');
-      toggle?.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
-        localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
-      });
-
-      // 1) Hero Mouse-Follow Background
-      const hero = document.getElementById('hero-section');
-      if (hero) {
-        hero.addEventListener('mousemove', (e) => {
-          const rect = hero.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          hero.style.setProperty('--mouse-x', `${x}px`);
-          hero.style.setProperty('--mouse-y', `${y}px`);
-        });
-      }
-
-      // 2) Typewriter Effect
-      const titleEl = document.getElementById('typewriter-title');
-      if (titleEl) {
-        const originalText = titleEl.textContent;
-        let i = 0;
-        titleEl.textContent = '';
-        function typeWriter() {
-          if (i < originalText.length) {
-            titleEl.textContent += originalText.charAt(i);
-            i++;
-            setTimeout(typeWriter, 50);
-          }
-        }
-        setTimeout(typeWriter, 500);
-      }
-
-      // 3) 3D Card Tilt Effect
-      const cards = document.querySelectorAll('.card.project');
-      const maxRotation = 8;
-      cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-          const { width, height, left, top } = card.getBoundingClientRect();
-          const x = e.clientX - left;
-          const y = e.clientY - top;
-          const rotateX = (maxRotation * (y - height / 2)) / (height / 2) * -1;
-          const rotateY = (maxRotation * (x - width / 2)) / (width / 2);
-          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.03, 1.03, 1.03)`;
-        });
-        card.addEventListener('mouseleave', () => {
-          card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-        });
-      });
-
-      // 4) Active nav state on scroll
-      const sections=[...document.querySelectorAll('section[id]')];
-      const navLinks=[...document.querySelectorAll('.menu a')];
-      const onScroll=()=>{
-        const y=window.scrollY+120;
-        const current = sections.findLast(s => s.offsetTop <= y);
-        const id = current ? current.id : null;
-        navLinks.forEach(a=>a.toggleAttribute('aria-current', id && a.getAttribute('href')==='#'+id));
-      };
-      document.addEventListener('scroll', onScroll, {passive:true});
-      onScroll();
-
-      // 5) Skills: filter + reveal-on-scroll animations
-      const filterBtns = document.querySelectorAll('.filter');
-      const cardsAll = document.querySelectorAll('.skill-card');
-      filterBtns.forEach(btn => btn.addEventListener('click', () => {
-        filterBtns.forEach(b=>{b.classList.remove('is-active'); b.setAttribute('aria-selected','false')});
-        btn.classList.add('is-active'); btn.setAttribute('aria-selected','true');
-        const f = btn.dataset.filter;
-        cardsAll.forEach(c => {
-          const show = (f==='all') || c.dataset.topic===f;
-          c.style.display = show ? '' : 'none';
-        });
-      }));
-
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-      }, {threshold: 0.15});
-      document.querySelectorAll('.anim').forEach(el=>io.observe(el));
-
-      // --- Self-tests (basic runtime checks in console) ---
-      try {
-        console.assert(document.querySelector('#skills .skill-card'), 'Skills cards should render');
-        console.assert(typeof onScroll === 'function', 'onScroll function exists');
-        const activeBtn = document.querySelector('.skill-filters .filter.is-active');
-        console.assert(activeBtn && activeBtn.dataset.filter==='all', 'Default filter is All');
-      } catch(e) { console.warn('Self-tests failed:', e); }
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('light-mode');
+      localStorage.setItem('theme', body.classList.contains('light-mode') ? 'light' : 'dark');
     });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 2. Global Command Palette Search
+    const searchOverlay = document.getElementById('search-overlay');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+    const searchTrigger = document.getElementById('search-trigger');
+    
+    // Collect searchable items
+    const searchableItems = Array.from(document.querySelectorAll('.search-item')).map(item => {
+      return {
+        element: item,
+        title: item.dataset.title || item.querySelector('h3')?.textContent || item.querySelector('.cert-title')?.textContent || '',
+        tags: item.dataset.tags || '',
+        context: item.closest('section')?.id || 'General'
+      };
+    });
+
+    function toggleSearch() {
+      const isOpen = searchOverlay.classList.contains('open');
+      if (isOpen) {
+        searchOverlay.classList.remove('open');
+        setTimeout(() => searchOverlay.style.display = 'none', 200);
+      } else {
+        searchOverlay.style.display = 'flex';
+        // Force reflow
+        searchOverlay.offsetHeight; 
+        searchOverlay.classList.add('open');
+        searchInput.focus();
+        renderResults('');
+      }
+    }
+
+    function renderResults(term) {
+      searchResults.innerHTML = '';
+      const lowerTerm = term.toLowerCase();
+      
+      const filtered = searchableItems.filter(item => 
+        item.title.toLowerCase().includes(lowerTerm) || 
+        item.tags.toLowerCase().includes(lowerTerm)
+      );
+
+      if (filtered.length === 0 && term !== '') {
+        searchResults.innerHTML = '<div style="padding:20px; text-align:center; color:var(--text-muted)">No results found.</div>';
+        return;
+      }
+      
+      if (term === '') {
+         searchResults.innerHTML = '<div style="padding:20px; text-align:center; color:var(--text-muted)">Type to find projects, skills, or experience...</div>';
+         return;
+      }
+
+      filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'result-item';
+        div.innerHTML = `
+          <div>
+            <div style="font-weight:500; color:var(--text-main)">${item.title}</div>
+            <div style="font-size:12px; color:var(--text-muted)">In ${item.context}</div>
+          </div>
+          <div class="result-tag">${item.tags.split(',')[0]}</div>
+        `;
+        div.addEventListener('click', () => {
+          toggleSearch();
+          item.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Highlight effect
+          item.element.style.borderColor = 'var(--accent)';
+          setTimeout(() => item.element.style.borderColor = '', 1000);
+        });
+        searchResults.appendChild(div);
+      });
+    }
+
+    // Event Listeners for Search
+    searchTrigger.addEventListener('click', toggleSearch);
+    
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        toggleSearch();
+      }
+      if (e.key === 'Escape' && searchOverlay.classList.contains('open')) {
+        toggleSearch();
+      }
+    });
+
+    searchInput.addEventListener('input', (e) => renderResults(e.target.value));
+    
+    // Close on backdrop click
+    searchOverlay.addEventListener('click', (e) => {
+      if (e.target === searchOverlay) toggleSearch();
+    });
+
   </script>
 </body>
 </html>
