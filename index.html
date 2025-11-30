@@ -257,6 +257,7 @@
     .variable { color: #79c0ff; }
     .comment { color: #6a9955; display: block; margin-top: 8px; }
     .output-line { margin-bottom: 8px; line-height: 1.5; }
+    .ai-response { color: #ce9178; margin-bottom: 12px; white-space: pre-wrap; }
     
     .input-line { display: flex; align-items: center; }
     .terminal-input {
@@ -454,13 +455,11 @@
           <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">cat intro.txt</span></div>
           <div class="output-line" style="color: var(--text-muted); margin-bottom: 12px;">Mobile Engineer | AI Enthusiast | DePaul Grad Student</div>
           
-          <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">help</span></div>
-          <div class="output-line" style="color: #e3b341; margin-bottom: 12px;">
-            Available commands:<br>
-            - <span class="variable">projects</span>: View my work<br>
-            - <span class="variable">skills</span>: List technical skills<br>
-            - <span class="variable">contact</span>: How to reach me<br>
-            - <span class="variable">clear</span>: Clear terminal
+          <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">gemini_agent --start</span></div>
+          <div class="output-line" style="color: #27c93f; margin-bottom: 12px;">
+            ✨ Gemini AI Agent initialized.<br>
+            I can answer questions about my skills, projects, and resume.<br>
+            Try asking: "What is your experience with Flutter?" or "Tell me about the AirPods project."
           </div>
 
           <div class="input-line">
@@ -841,38 +840,90 @@
 
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // 2. Interactive Terminal
+    // 2. Interactive Terminal & Gemini Integration
     const termInput = document.getElementById('terminal-input');
     const termBody = document.getElementById('terminal-body');
     const termWindow = document.getElementById('terminal-window');
+    const apiKey = ""; // System provides this
 
     termWindow.addEventListener('click', () => {
         termInput.focus();
     });
 
-    termInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const command = termInput.value.trim().toLowerCase();
-            const originalCommand = termInput.value;
+    // Helper to get portfolio content for Gemini context
+    function getPortfolioContext() {
+        const sections = ['skills', 'projects', 'experience', 'education', 'certifications'];
+        let context = "Here is Ebenezer Daniel's portfolio content:\n\n";
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) {
+                // Basic cleanup to remove extra whitespace
+                const text = el.innerText.replace(/\n\s*\n/g, '\n').trim();
+                context += `--- ${id.toUpperCase()} ---\n${text}\n\n`;
+            }
+        });
+        return context;
+    }
+
+    async function callGemini(prompt) {
+        const context = getPortfolioContext();
+        const systemPrompt = `You are an AI assistant for Ebenezer Daniel's portfolio. 
+        Answer questions about Ebenezer based on this context:
+        ${context}
+        
+        Keep answers concise (max 3 sentences), professional, and friendly. 
+        Format with simple HTML tags like <br> or <b> for emphasis if needed.
+        If the question is unrelated to the portfolio, politely steer back to Ebenezer's skills and experience.
+        Use a tech-savvy tone.`;
+
+        try {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    contents: [{ parts: [{ text: prompt }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                })
+            });
             
+            if (!response.ok) throw new Error('API Error');
+            const data = await response.json();
+            return data.candidates[0].content.parts[0].text;
+        } catch (e) {
+            console.error(e);
+            return "Connection to AI server failed. Please try again later.";
+        }
+    }
+
+    termInput.addEventListener('keydown', async (e) => {
+        if (e.key === 'Enter') {
+            const command = termInput.value.trim();
+            const lowerCommand = command.toLowerCase();
+            
+            if (!command) return;
+
             // Create previous command line
             const prevLine = document.createElement('div');
             prevLine.className = 'output-line';
-            prevLine.innerHTML = `<span class="cmd">➜</span> <span class="string">~</span> ${originalCommand}`;
-            // Insert before the input line
+            prevLine.innerHTML = `<span class="cmd">➜</span> <span class="string">~</span> ${command}`;
             termBody.insertBefore(prevLine, termInput.parentElement);
+            
+            // Clear input immediately
+            termInput.value = '';
             
             // Process command
             let response = '';
             
-            switch (command) {
+            switch (lowerCommand) {
                 case 'help':
                     response = `Available commands:
                     - <span class="variable">projects</span>: View portfolio
                     - <span class="variable">skills</span>: List technical skills
                     - <span class="variable">experience</span>: See work history
                     - <span class="variable">contact</span>: Contact info
-                    - <span class="variable">clear</span>: Clear screen`;
+                    - <span class="variable">clear</span>: Clear screen
+                    
+                    Or just ask me a question like "What is your Flutter experience?"`;
                     break;
                 case 'projects':
                     response = 'Navigating to projects...';
@@ -890,17 +941,25 @@
                     response = 'Email: <a href="mailto:ebenezerdaniel98@gmail.com" style="color:var(--accent)">ebenezerdaniel98@gmail.com</a><br>GitHub: <a href="https://github.com/eben98" style="color:var(--accent)">github.com/eben98</a>';
                     break;
                 case 'clear':
-                    // Remove all output-lines except the initial greeting if desired, or simple refresh logic
-                    // For now, let's just clear the dynamic ones. 
-                    // Actually, simpler to just clear everything above input
-                    const lines = termBody.querySelectorAll('.output-line');
+                    const lines = termBody.querySelectorAll('.output-line, .ai-response');
                     lines.forEach(l => l.remove());
-                    termInput.value = '';
-                    return; // Exit early
-                case '':
-                    break;
+                    return; 
                 default:
-                    response = `Command not found: ${command}. Type <span class="variable">help</span> for available commands.`;
+                    // Gemini Integration for natural language
+                    const loadingId = 'loading-' + Date.now();
+                    const loadingLine = document.createElement('div');
+                    loadingLine.className = 'output-line';
+                    loadingLine.id = loadingId;
+                    loadingLine.style.color = '#79c0ff';
+                    loadingLine.innerHTML = '✨ Thinking...';
+                    termBody.insertBefore(loadingLine, termInput.parentElement);
+                    
+                    const aiAnswer = await callGemini(command);
+                    
+                    // Remove loading
+                    document.getElementById(loadingId).remove();
+                    
+                    response = `<div class="ai-response">✨ ${aiAnswer}</div>`;
             }
             
             if (response) {
@@ -911,7 +970,6 @@
                 termBody.insertBefore(respLine, termInput.parentElement);
             }
             
-            termInput.value = '';
             termBody.scrollTop = termBody.scrollHeight;
         }
     });
