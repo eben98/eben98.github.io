@@ -195,7 +195,7 @@
 
     /* Hero Section */
     .hero {
-      padding: 80px 0;
+      padding: 80px 0 40px;
       display: grid;
       grid-template-columns: 1.2fr 1fr;
       gap: 40px;
@@ -228,6 +228,35 @@
       font-size: 16px;
       margin-bottom: 32px;
       max-width: 520px;
+    }
+    
+    /* Stats Bar (New) */
+    .stats-bar {
+        display: flex;
+        gap: 40px;
+        margin-bottom: 60px;
+        padding: 24px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        flex-wrap: wrap;
+    }
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+    .stat-value {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--accent);
+        font-family: var(--code-font);
+    }
+    .stat-label {
+        font-size: 13px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     
     /* Terminal Effect */
@@ -317,10 +346,12 @@
     }
     .card:hover { transform: translateY(-4px); border-color: var(--accent); }
     
+    /* Standard Project Image */
     .card-img {
       height: 180px;
       background: #000;
       position: relative;
+      overflow: hidden;
     }
     .card-img img {
       width: 100%;
@@ -330,6 +361,29 @@
       transition: opacity 0.3s, transform 0.5s;
     }
     .card:hover .card-img img { opacity: 1; transform: scale(1.05); }
+
+    /* Mobile Project Styling (New) */
+    .card.mobile-project .card-img {
+        height: 320px; /* Taller for phone ratio */
+        background: var(--bg); /* Show background around phone */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    .card.mobile-project .card-img img {
+        width: auto;
+        height: 100%;
+        max-width: 90%;
+        object-fit: cover;
+        border-radius: 16px; /* Phone rounded corners */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        border: 4px solid #333; /* Phone bezel */
+    }
+    .card.mobile-project:hover .card-img img {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
     
     .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
     .card h3 { margin: 0 0 8px 0; font-size: 18px; }
@@ -344,6 +398,18 @@
       padding: 4px 8px;
       border-radius: 4px;
     }
+    
+    /* Project Links */
+    .project-link {
+        font-size: 13px;
+        color: var(--accent);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 12px;
+        font-weight: 500;
+    }
+    .project-link:hover { text-decoration: underline; }
 
     /* Experience Timeline */
     .timeline-item {
@@ -498,7 +564,33 @@
       </div>
     </section>
     
-    <!-- Skills Section (New) -->
+    <!-- Impact Stats (New) -->
+    <div class="container">
+        <div class="stats-bar">
+            <div class="stat-item">
+                <span class="stat-value">4+</span>
+                <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">5+</span>
+                <span class="stat-label">Apps Shipped</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">85%</span>
+                <span class="stat-label">Model Accuracy</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">30%</span>
+                <span class="stat-label">Faster Analysis</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">1M+</span>
+                <span class="stat-label">Records Processed</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Skills Section -->
     <section id="skills" style="padding-top: 60px;">
       <h2 class="section-title">Tech Stack</h2>
       <div class="skills-section">
@@ -555,10 +647,10 @@
       </h2>
       
       <div class="grid">
-        <!-- Project 1 -->
-        <article class="card search-item" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
+        <!-- Project 1 (Mobile Style) -->
+        <article class="card mobile-project search-item" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1590658268037-6bf12165a8df?q=80&w=800&auto=format&fit=crop" alt="Wireless Earbuds">
+            <img src="https://images.unsplash.com/photo-1576091160550-2187d80a1830?q=80&w=800&auto=format&fit=crop" alt="Gait Analysis and Motion Data">
           </div>
           <div class="card-body">
             <h3>AirPods Gait Auth</h3>
@@ -571,10 +663,10 @@
           </div>
         </article>
 
-        <!-- Project 2 -->
-        <article class="card search-item" data-title="Toyota Connected Services" data-tags="Flutter, iOS, Android, Enterprise">
+        <!-- Project 2 (Mobile Style) -->
+        <article class="card mobile-project search-item" data-title="Toyota Connected Services" data-tags="Flutter, iOS, Android, Enterprise">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=800&auto=format&fit=crop" alt="Connected Car Dashboard">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Automotive Infotainment Dashboard">
           </div>
           <div class="card-body">
             <h3>Toyota Connected Services</h3>
@@ -587,10 +679,10 @@
           </div>
         </article>
         
-        <!-- Project 3: Distributed Systems (New) -->
+        <!-- Project 3: Distributed Systems (Standard) -->
         <article class="card search-item" data-title="Distributed File Retrieval" data-tags="Java, Distributed Systems, Concurrency">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1558494949-ef2bb6db8744?q=80&w=800&auto=format&fit=crop" alt="Server Racks">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Network Topology and Servers">
           </div>
           <div class="card-body">
             <h3>Distributed File Retrieval</h3>
@@ -600,13 +692,14 @@
               <span class="tag">Multi-threading</span>
               <span class="tag">TCP/IP</span>
             </div>
+            <a href="https://github.com/eben98" class="project-link"><i class="fab fa-github"></i> View Code</a>
           </div>
         </article>
 
-        <!-- Project 4 -->
+        <!-- Project 4 (Standard) -->
         <article class="card search-item" data-title="Genome Assembly & Analysis" data-tags="Python, Data Science, Research">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800&auto=format&fit=crop" alt="DNA Structure">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop" alt="DNA Sequencing Data">
           </div>
           <div class="card-body">
             <h3>Genome Assembly</h3>
@@ -619,10 +712,10 @@
           </div>
         </article>
 
-        <!-- Project 5 -->
-        <article class="card search-item" data-title="Kipos Stadia" data-tags="Flutter, Firebase, Social">
+        <!-- Project 5 (Mobile Style) -->
+        <article class="card mobile-project search-item" data-title="Kipos Stadia" data-tags="Flutter, Firebase, Social">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=800&auto=format&fit=crop" alt="Community App Concept">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" alt="Social Connection and Networking">
           </div>
           <div class="card-body">
             <h3>Kipos Stadia</h3>
@@ -635,10 +728,10 @@
           </div>
         </article>
         
-        <!-- Project 6 -->
-        <article class="card search-item" data-title="MOHI NGO Apps" data-tags="Flutter, Offline-First, Social Good">
+        <!-- Project 6 (Mobile Style) -->
+        <article class="card mobile-project search-item" data-title="MOHI NGO Apps" data-tags="Flutter, Offline-First, Social Good">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=800&auto=format&fit=crop" alt="Education Technology">
+            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop" alt="Digital Education in Field">
           </div>
           <div class="card-body">
             <h3>MOHI NGO Apps</h3>
@@ -650,10 +743,10 @@
           </div>
         </article>
 
-         <!-- Project 7 -->
+         <!-- Project 7 (Standard) -->
         <article class="card search-item" data-title="Power Platform Automation" data-tags="PowerApps, SQL, Automation">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Data Dashboard">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Business Analytics Dashboard">
           </div>
           <div class="card-body">
             <h3>Enterprise Automation</h3>
@@ -665,6 +758,42 @@
             </div>
           </div>
         </article>
+        
+        <!-- New: Recommender Systems -->
+        <article class="card search-item" data-title="Recommender Systems" data-tags="Python, Machine Learning">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=800&auto=format&fit=crop" alt="Network Graph and Algorithms">
+          </div>
+          <div class="card-body">
+            <h3>Recommender Systems</h3>
+            <p>Built Item-Based Similarity Recommender System. Focused on sparse matrix operations and cosine similarity for efficient top-k retrieval.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">RecSys</span>
+            </div>
+            <a href="https://github.com/eben98/dsc_478_final_project_rec_system" class="project-link"><i class="fab fa-github"></i> View Code</a>
+          </div>
+        </article>
+
+        <!-- New: Energy Consumption -->
+        <article class="card search-item" data-title="Energy Forecasting" data-tags="Python, Neural Networks">
+          <div class="card-img">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop" alt="Smart Grid and Energy Data">
+          </div>
+          <div class="card-body">
+            <h3>Energy Demand Forecasting</h3>
+            <p>Predicting hourly energy consumption using LSTM neural networks and weather data from 18 stations. Analyzed 1M+ records.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">LSTM</span>
+              <span class="tag">Deep Learning</span>
+            </div>
+            <!-- Assuming repo for now, or text description if no direct link -->
+            <a href="https://github.com/eben98?tab=repositories" class="project-link"><i class="fab fa-github"></i> View Code</a>
+          </div>
+        </article>
+
       </div>
     </section>
 
