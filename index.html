@@ -6,10 +6,18 @@
   <title>Ebenezer Daniel — Mobile & AI Engineer</title>
   <meta name="description" content="Portfolio of Ebenezer Daniel - Mobile Software Engineer (Flutter/Native) & ML Specialist" />
   
-  <!-- Fonts -->
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="Ebenezer Daniel — Mobile & AI Engineer">
+  <meta property="og:description" content="Mobile Software Engineer building intelligent apps with Flutter & AI.">
+  <meta property="og:image" content="https://github.com/eben98.png">
+  <meta property="og:url" content="https://eben98.github.io">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <!-- Favicon -->
   <link rel="icon" href="https://github.com/eben98.png">
@@ -366,12 +374,32 @@
       border: 1px solid var(--border);
       border-radius: 8px;
       padding: 16px;
-      transition: 0.2s;
+      transition: all 0.2s;
+      display: flex;
+      align-items: start;
+      gap: 12px;
     }
-    .cert-card:hover { border-color: var(--accent); background: var(--bg); }
-    .cert-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: block; }
+    .cert-card:hover { 
+      border-color: var(--accent); 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .cert-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--accent-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .cert-content { flex: 1; }
+    .cert-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: block; line-height: 1.4; }
     .cert-issuer { font-size: 12px; color: var(--text-muted); display: block; }
-    .cert-date { font-family: var(--code-font); font-size: 11px; color: var(--accent); margin-top: 8px; display: block; }
+    .cert-date { font-family: var(--code-font); font-size: 11px; color: var(--accent); margin-top: 6px; display: block; }
 
     /* Footer */
     footer { padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; text-align: center; color: var(--text-muted); font-size: 14px; }
@@ -729,84 +757,123 @@
     <!-- Certifications Section -->
     <section id="certifications" style="padding-top: 60px;">
       <h2 class="section-title">Certifications</h2>
-      <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;">
+      <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
         
         <div class="cert-card search-item" data-title="Working with Hugging Face" data-tags="AI, DataCamp">
-          <span class="cert-title">Working with Hugging Face</span>
-          <span class="cert-issuer">DataCamp</span>
-          <span class="cert-date">Nov 2025</span>
+          <div class="cert-icon"><i class="fas fa-cube"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Working with Hugging Face</span>
+            <span class="cert-issuer">DataCamp</span>
+            <span class="cert-date">Nov 2025</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Working with OpenAI API" data-tags="AI, DataCamp">
-          <span class="cert-title">Working with OpenAI API</span>
-          <span class="cert-issuer">DataCamp</span>
-          <span class="cert-date">Nov 2025</span>
+          <div class="cert-icon"><i class="fas fa-robot"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Working with OpenAI API</span>
+            <span class="cert-issuer">DataCamp</span>
+            <span class="cert-date">Nov 2025</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="How AI Works" data-tags="AI, Brilliant">
-          <span class="cert-title">How AI Works</span>
-          <span class="cert-issuer">Brilliant.org</span>
-          <span class="cert-date">Apr 2025</span>
+          <div class="cert-icon"><i class="far fa-lightbulb"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">How AI Works</span>
+            <span class="cert-issuer">Brilliant.org</span>
+            <span class="cert-date">Apr 2025</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Computational Biology" data-tags="Biology, Brilliant">
-          <span class="cert-title">Computational Biology</span>
-          <span class="cert-issuer">Brilliant.org</span>
-          <span class="cert-date">Aug 2022</span>
+          <div class="cert-icon"><i class="fas fa-dna"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Computational Biology</span>
+            <span class="cert-issuer">Brilliant.org</span>
+            <span class="cert-date">Aug 2022</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Algorithm Fundamentals" data-tags="CS, Brilliant">
-          <span class="cert-title">Algorithm Fundamentals</span>
-          <span class="cert-issuer">Brilliant.org</span>
-          <span class="cert-date">Jul 2022</span>
+          <div class="cert-icon"><i class="fas fa-project-diagram"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Algorithm Fundamentals</span>
+            <span class="cert-issuer">Brilliant.org</span>
+            <span class="cert-date">Jul 2022</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Computer Science Fundamentals" data-tags="CS, Brilliant">
-          <span class="cert-title">Computer Science Fundamentals</span>
-          <span class="cert-issuer">Brilliant.org</span>
-          <span class="cert-date">Jun 2022</span>
+          <div class="cert-icon"><i class="fas fa-laptop-code"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Computer Science Fundamentals</span>
+            <span class="cert-issuer">Brilliant.org</span>
+            <span class="cert-date">Jun 2022</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Agile Project Management & Scrum" data-tags="Agile, OpenClassrooms">
-          <span class="cert-title">Agile & Scrum</span>
-          <span class="cert-issuer">OpenClassrooms</span>
-          <span class="cert-date">Apr 2022</span>
+          <div class="cert-icon"><i class="fas fa-tasks"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Agile & Scrum</span>
+            <span class="cert-issuer">OpenClassrooms</span>
+            <span class="cert-date">Apr 2022</span>
+          </div>
         </div>
         
         <div class="cert-card search-item" data-title="Digital Skills: AI" data-tags="AI, Accenture">
-          <span class="cert-title">Digital Skills: AI</span>
-          <span class="cert-issuer">Accenture</span>
-          <span class="cert-date">Sep 2021</span>
+          <div class="cert-icon"><i class="fas fa-brain"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Digital Skills: AI</span>
+            <span class="cert-issuer">Accenture</span>
+            <span class="cert-date">Sep 2021</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="MS Power Platform Fundamentals" data-tags="Microsoft, PowerPlatform">
-          <span class="cert-title">Power Platform Fundamentals</span>
-          <span class="cert-issuer">Microsoft</span>
-          <span class="cert-date">Sep 2021</span>
+          <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Power Platform Fundamentals</span>
+            <span class="cert-issuer">Microsoft</span>
+            <span class="cert-date">Sep 2021</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="MS Power Platform Functional Consultant" data-tags="Microsoft, PowerPlatform">
-          <span class="cert-title">Power Platform Consultant</span>
-          <span class="cert-issuer">Microsoft</span>
-          <span class="cert-date">Apr 2021</span>
+          <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Power Platform Consultant</span>
+            <span class="cert-issuer">Microsoft</span>
+            <span class="cert-date">Apr 2021</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="MS Power Platform App Maker" data-tags="Microsoft, PowerPlatform">
-          <span class="cert-title">Power Platform App Maker</span>
-          <span class="cert-issuer">Microsoft</span>
-          <span class="cert-date">Jan 2021</span>
+          <div class="cert-icon"><i class="fab fa-microsoft"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Power Platform App Maker</span>
+            <span class="cert-issuer">Microsoft</span>
+            <span class="cert-date">Jan 2021</span>
+          </div>
         </div>
         
         <div class="cert-card search-item" data-title="DNA Decoded" data-tags="Biology, McMaster">
-          <span class="cert-title">DNA Decoded</span>
-          <span class="cert-issuer">McMaster University</span>
-          <span class="cert-date">Feb 2021</span>
+          <div class="cert-icon"><i class="fas fa-university"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">DNA Decoded</span>
+            <span class="cert-issuer">McMaster University</span>
+            <span class="cert-date">Feb 2021</span>
+          </div>
         </div>
 
         <div class="cert-card search-item" data-title="Front End Web Development" data-tags="Web, upGrad">
-          <span class="cert-title">Front End Web Development</span>
-          <span class="cert-issuer">upGrad</span>
-          <span class="cert-date">Jul 2020</span>
+          <div class="cert-icon"><i class="fas fa-layer-group"></i></div>
+          <div class="cert-content">
+            <span class="cert-title">Front End Web Development</span>
+            <span class="cert-issuer">upGrad</span>
+            <span class="cert-date">Jul 2020</span>
+          </div>
         </div>
 
       </div>
@@ -920,6 +987,7 @@
                     - <span class="variable">projects</span>: View portfolio
                     - <span class="variable">skills</span>: List technical skills
                     - <span class="variable">experience</span>: See work history
+                    - <span class="variable">resume</span>: Open Resume (PDF)
                     - <span class="variable">contact</span>: Contact info
                     - <span class="variable">clear</span>: Clear screen
                     
@@ -936,6 +1004,10 @@
                 case 'experience':
                     response = 'Navigating to experience...';
                     document.getElementById('experience').scrollIntoView({behavior: 'smooth'});
+                    break;
+                case 'resume':
+                    response = 'Opening resume...';
+                    window.open('/Ebenezer_Daniel_resume.pdf', '_blank');
                     break;
                 case 'contact':
                     response = 'Email: <a href="mailto:ebenezerdaniel98@gmail.com" style="color:var(--accent)">ebenezerdaniel98@gmail.com</a><br>GitHub: <a href="https://github.com/eben98" style="color:var(--accent)">github.com/eben98</a>';
