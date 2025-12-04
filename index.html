@@ -81,6 +81,27 @@
     .btn-primary { background: var(--accent); color: white; border: none; }
     .btn-primary:hover { opacity: 0.9; background: var(--accent); }
 
+    /* New AI Button Style */
+    .btn-ai {
+        font-size: 12px;
+        padding: 4px 10px;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        background: transparent;
+        border-radius: 20px;
+        margin-left: auto; /* Push to right */
+        cursor: pointer;
+        transition: 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .btn-ai:hover {
+        background: var(--accent);
+        color: white;
+        box-shadow: 0 0 10px var(--accent-dim);
+    }
+
     /* Navbar */
     .nav {
       position: sticky;
@@ -193,6 +214,46 @@
       padding: 2px 6px;
       border: 1px solid var(--border);
       border-radius: 4px;
+    }
+
+    /* Project Details Modal */
+    .details-modal {
+        width: 100%;
+        max-width: 700px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        padding: 30px;
+        position: relative;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    .details-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 20px;
+    }
+    .details-title h2 { margin: 0; font-size: 24px; }
+    .details-subtitle { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+    .details-close { 
+        background: none; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; 
+        padding: 0; line-height: 1;
+    }
+    .details-section { margin-bottom: 24px; }
+    .details-section h3 { font-size: 16px; color: var(--accent); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .arch-diagram {
+        background: var(--card-bg);
+        padding: 16px;
+        border-radius: 8px;
+        font-family: var(--code-font);
+        font-size: 13px;
+        color: var(--text-main);
+        border: 1px solid var(--border);
+        white-space: pre-wrap;
     }
 
     /* Hero Section */
@@ -448,6 +509,17 @@
         border-left: 4px solid var(--accent);
         padding-left: 20px;
     }
+    
+    /* GitHub Activity (New) */
+    .github-graph {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      overflow-x: auto;
+      margin-bottom: 60px;
+    }
+    .gh-chart { width: 100%; min-width: 700px; }
 
     /* Experience Timeline */
     .timeline-item {
@@ -504,6 +576,31 @@
     .cert-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; display: block; line-height: 1.4; }
     .cert-issuer { font-size: 12px; color: var(--text-muted); display: block; }
     .cert-date { font-family: var(--code-font); font-size: 11px; color: var(--accent); margin-top: 6px; display: block; }
+    
+    /* Contact Form */
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+    @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+    
+    .form-group { margin-bottom: 16px; }
+    .form-label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--text-main); font-weight: 500; }
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: var(--text-main);
+        font-family: var(--body-font);
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+    .form-control:focus { border-color: var(--accent); }
+    textarea.form-control { resize: vertical; min-height: 120px; }
 
     /* Footer */
     footer { padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; text-align: center; color: var(--text-muted); font-size: 14px; }
@@ -549,6 +646,39 @@
       <div class="search-results" id="search-results">
         <!-- Results injected via JS -->
       </div>
+    </div>
+  </div>
+
+  <!-- Project Details Modal -->
+  <div id="project-modal" class="modal-overlay">
+    <div class="details-modal">
+        <div class="details-header">
+            <div class="details-title">
+                <h2 id="modal-title">Project Name</h2>
+                <div class="details-subtitle" id="modal-tags">Flutter • Python</div>
+            </div>
+            <button class="details-close" onclick="closeProjectModal()">×</button>
+        </div>
+        <div class="details-content">
+            <div class="details-section">
+                <h3><i class="fas fa-layer-group"></i> Architecture</h3>
+                <div class="arch-diagram" id="modal-arch">
+                    Client -> API -> Database
+                </div>
+            </div>
+            <div class="details-section">
+                <h3><i class="fas fa-bolt"></i> Key Challenge & Solution</h3>
+                <p id="modal-challenge" style="color:var(--text-muted); font-size:14px; line-height:1.6;">
+                    Details about the technical hurdle...
+                </p>
+            </div>
+            <div class="details-section">
+                <h3><i class="fas fa-chart-line"></i> Impact</h3>
+                <p id="modal-impact" style="color:var(--text-muted); font-size:14px; line-height:1.6;">
+                    Resulting metrics...
+                </p>
+            </div>
+        </div>
     </div>
   </div>
 
@@ -743,7 +873,8 @@
               <span class="tag">FastAPI</span>
             </div>
             <div class="project-footer">
-                <a href="https://github.com/eben98" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                <span class="project-link" onclick="openProjectModal('AirPods')">View Details</span>
+                <a href="https://github.com/eben98" target="_blank" class="project-link" style="margin-left:12px;"><i class="fab fa-github"></i> Code</a>
             </div>
           </div>
         </article>
@@ -762,6 +893,7 @@
               <span class="tag">CI/CD</span>
             </div>
             <div class="project-footer">
+                <span class="project-link" onclick="openProjectModal('Toyota')">View Details</span>
                 <a href="#" class="project-link">Private Repo</a>
             </div>
           </div>
@@ -781,7 +913,8 @@
               <span class="tag">TCP/IP</span>
             </div>
             <div class="project-footer">
-                <a href="https://github.com/eben98" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+                <span class="project-link" onclick="openProjectModal('Distributed')">View Details</span>
+                <a href="https://github.com/eben98" target="_blank" class="project-link" style="margin-left:12px;"><i class="fab fa-github"></i> Code</a>
             </div>
           </div>
         </article>
@@ -800,7 +933,8 @@
               <span class="tag">Firebase</span>
             </div>
             <div class="project-footer">
-               <a href="https://stadia.org/kipos/" target="_blank" class="project-link">View App</a>
+                <span class="project-link" onclick="openProjectModal('Kipos')">View Details</span>
+               <a href="https://stadia.org/kipos/" target="_blank" class="project-link" style="margin-left:12px;">View App</a>
             </div>
           </div>
         </article>
@@ -818,7 +952,8 @@
               <span class="tag">Offline-First</span>
             </div>
             <div class="project-footer">
-               <a href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" class="project-link">Play Store</a>
+                <span class="project-link" onclick="openProjectModal('MOHI')">View Details</span>
+               <a href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" class="project-link" style="margin-left:12px;">Play Store</a>
             </div>
           </div>
         </article>
@@ -837,7 +972,8 @@
               <span class="tag">PowerBI</span>
             </div>
             <div class="project-footer">
-                <span class="project-link">Internal Tool</span>
+                <span class="project-link" onclick="openProjectModal('Power')">View Details</span>
+                <span class="project-link" style="margin-left:12px;">Internal Tool</span>
             </div>
           </div>
         </article>
@@ -889,6 +1025,15 @@
           </div>
         </article>
       </div>
+    </section>
+    
+    <!-- GitHub Activity -->
+    <section id="github-activity" style="padding-top: 60px;">
+        <h2 class="section-title">GitHub Activity</h2>
+        <div class="github-graph">
+            <!-- Changed color hex code to 2ea44f (GitHub Green) -->
+            <img src="https://ghchart.rshah.org/2ea44f/eben98" alt="Ebenezer's GitHub Activity" class="gh-chart" loading="lazy">
+        </div>
     </section>
 
     <!-- Experience -->
@@ -957,6 +1102,34 @@
           </ul>
         </div>
       </div>
+    </section>
+
+    <!-- Impact Stories (New) -->
+    <section id="impact" style="padding-top: 60px;">
+        <h2 class="section-title">Impact & Results</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;">
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <div class="card-body">
+                    <h3><i class="fas fa-star" style="color:#ffbd2e;"></i> 86% User Satisfaction</h3>
+                    <p>"Achieved high user satisfaction for diverse clients by building responsive, accessible Flutter apps."</p>
+                    <span style="font-size:12px; color:var(--text-muted); margin-top:10px;">— UB Technology Innovations Clients</span>
+                </div>
+            </div>
+            <div class="card" style="border-left: 4px solid var(--accent);">
+                <div class="card-body">
+                    <h3><i class="fas fa-rocket" style="color:#ff5f56;"></i> 30% Efficiency Boost</h3>
+                    <p>"Improved student lab learning and completion rates by 30% through hands-on teaching of Robotics."</p>
+                    <span style="font-size:12px; color:var(--text-muted); margin-top:10px;">— DePaul University Labs</span>
+                </div>
+            </div>
+             <div class="card" style="border-left: 4px solid var(--accent);">
+                <div class="card-body">
+                    <h3><i class="fas fa-check-circle" style="color:#27c93f;"></i> 60% Automation</h3>
+                    <p>"Boosted operational efficiency by 60% for Finance & HR teams by automating manual workflows."</p>
+                    <span style="font-size:12px; color:var(--text-muted); margin-top:10px;">— Nokia & The Hindu Projects</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Education -->
@@ -1100,6 +1273,42 @@
         </div>
 
       </div>
+    </section>
+    
+    <!-- Contact Section (New) -->
+    <section id="contact" style="padding-top: 80px;">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <p class="lead">Currently seeking full-time opportunities in Mobile Engineering (Flutter/iOS/Android) or Machine Learning.</p>
+                <div style="margin-top: 20px;">
+                    <p><i class="fas fa-envelope" style="width:24px; color:var(--accent);"></i> ebenezerdaniel98@gmail.com</p>
+                    <p><i class="fas fa-phone" style="width:24px; color:var(--accent);"></i> (312) 826 2736</p>
+                    <p><i class="fas fa-map-marker-alt" style="width:24px; color:var(--accent);"></i> Chicago, IL</p>
+                </div>
+                <div style="margin-top: 30px; display: flex; gap: 16px;">
+                     <a href="https://www.linkedin.com/in/ebenezer-daniel-i/" class="btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                     <a href="https://github.com/eben98" class="btn"><i class="fab fa-github"></i> GitHub</a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form action="mailto:ebenezerdaniel98@gmail.com" method="post" enctype="text/plain" class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control" placeholder="Recruiter or Visitor Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea name="message" class="form-control" placeholder="Hi Ebenezer, I'd like to discuss a role..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+                </form>
+            </div>
+        </div>
     </section>
     
     <!-- Footer -->
@@ -1387,6 +1596,76 @@
     
     backToTopBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 6. Project Modal Logic
+    const projectModal = document.getElementById('project-modal');
+    
+    // Data for the modals (extracted from your resume content)
+    const projectData = {
+        'AirPods': {
+            title: 'AirPods Gait Authentication',
+            tags: 'Flutter • Python • PyTorch',
+            arch: 'Sensors (CoreMotion) -> EventChannel (Swift) -> Flutter UI -> WebSocket -> FastAPI -> PyTorch Model',
+            challenge: 'Real-time high-frequency sensor streaming (60Hz+) from iOS to Flutter was causing UI jank.',
+            impact: 'Implemented a custom native EventChannel to offload sensor processing, enabling smooth 60fps animations while streaming data. Achieved 85% authentication accuracy.'
+        },
+        'Toyota': {
+            title: 'Toyota Connected Services',
+            tags: 'Flutter • Native • CI/CD',
+            arch: 'Flutter Module -> Native Container (iOS/Android) -> GraphQL API',
+            challenge: 'Integrating a Flutter "Add-to-App" module into a massive existing native codebase with complex navigation state.',
+            impact: 'Seamlessly launched the Subscriptions feature to millions of users. Reduced crash rate by optimizing the Flutter engine warm-up time.'
+        },
+        'Distributed': {
+            title: 'Distributed File Retrieval',
+            tags: 'Java • TCP/IP • Multi-threading',
+            arch: 'Client Node <-> Server Node (Socket Connection) | Peer-to-Peer Discovery',
+            challenge: 'Ensuring consistency and mutual exclusion when multiple nodes try to write to the same file simultaneously.',
+            impact: 'Implemented Ricart-Agrawala algorithm for mutual exclusion, ensuring 100% data consistency during concurrent operations.'
+        },
+        'Kipos': {
+            title: 'Kipos Stadia',
+            tags: 'Flutter • Firebase • Social',
+            arch: 'Flutter UI -> Firebase Auth -> Firestore DB -> Cloud Functions',
+            challenge: 'Handling complex user-generated content feeds with offline support.',
+            impact: 'Delivered a robust social feed with caching, increasing user retention. Fixed critical data sync bugs affecting 20% of users.'
+        },
+        'MOHI': {
+            title: 'MOHI NGO Apps',
+            tags: 'Flutter • Offline-First',
+            arch: 'Flutter -> SQLite (Local) -> Background Sync -> REST API',
+            challenge: 'Social workers needed to track attendance in remote areas with zero internet connectivity.',
+            impact: 'Built a "sync-later" architecture using local SQLite storage, improving field worker efficiency by 40%.'
+        },
+        'Power': {
+            title: 'Enterprise Automation',
+            tags: 'PowerApps • SQL • BI',
+            arch: 'PowerApps Interface -> Power Automate Flow -> SQL Server / SharePoint',
+            challenge: 'Automating manual data entry processes that took hours every day.',
+            impact: 'Reduced daily reporting time by 60% for the HR and Finance teams through automated workflows.'
+        }
+    };
+
+    function openProjectModal(key) {
+        const data = projectData[key];
+        if (data) {
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-tags').innerText = data.tags;
+            document.getElementById('modal-arch').innerText = data.arch;
+            document.getElementById('modal-challenge').innerText = data.challenge;
+            document.getElementById('modal-impact').innerText = data.impact;
+            projectModal.classList.add('open');
+        }
+    }
+
+    function closeProjectModal() {
+        projectModal.classList.remove('open');
+    }
+    
+    // Close modal on outside click
+    projectModal.addEventListener('click', (e) => {
+        if (e.target === projectModal) closeProjectModal();
     });
 
   </script>
