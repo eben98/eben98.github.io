@@ -116,7 +116,7 @@
 
     .menu { display: flex; gap: 16px; font-size: 14px; align-items: center; }
     .menu a { color: var(--text-muted); }
-    .menu a:hover, .menu a[aria-current="true"] { color: var(--accent); }
+    .menu a:hover, .menu a.active { color: var(--accent); }
     
     .kbd {
       font-family: var(--code-font);
@@ -125,6 +125,7 @@
       border-radius: 4px;
       font-size: 12px;
       color: var(--text-main);
+      margin-left: 6px;
     }
 
     /* Modals */
@@ -308,27 +309,52 @@
       margin-left: 8px;
     }
 
-    /* Skills Grid */
-    .skills-section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin-bottom: 60px;
+    /* Visual Skills Grid (New) */
+    .skills-grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 16px;
+        margin-bottom: 60px;
     }
-    .skill-category h3 { font-size: 16px; color: var(--accent); margin-bottom: 12px; }
-    .skill-list { list-style: none; padding: 0; margin: 0; }
-    .skill-list li { 
-      margin-bottom: 8px; 
-      font-size: 14px; 
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .skill-box {
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        transition: transform 0.2s, border-color 0.2s;
     }
-    .skill-list li::before {
-      content: "▹";
-      color: var(--accent);
-      font-size: 12px;
+    .skill-box:hover {
+        transform: translateY(-4px);
+        border-color: var(--accent);
+    }
+    .skill-icon { font-size: 28px; color: var(--text-main); }
+    .skill-name { font-size: 13px; color: var(--text-muted); font-weight: 500; }
+
+    /* Project Filter (New) */
+    .filter-container {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 32px;
+        flex-wrap: wrap;
+    }
+    .filter-btn {
+        padding: 6px 16px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: var(--bg);
+        color: var(--text-muted);
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+        background: var(--accent-dim);
+        color: var(--accent);
+        border-color: var(--accent);
     }
 
     /* Projects Grid */
@@ -362,10 +388,10 @@
     }
     .card:hover .card-img img { opacity: 1; transform: scale(1.05); }
 
-    /* Mobile Project Styling (New) */
+    /* Mobile Project Styling */
     .card.mobile-project .card-img {
-        height: 320px; /* Taller for phone ratio */
-        background: var(--bg); /* Show background around phone */
+        height: 320px;
+        background: var(--bg);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -376,9 +402,9 @@
         height: 100%;
         max-width: 90%;
         object-fit: cover;
-        border-radius: 16px; /* Phone rounded corners */
+        border-radius: 16px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        border: 4px solid #333; /* Phone bezel */
+        border: 4px solid #333;
     }
     .card.mobile-project:hover .card-img img {
         transform: translateY(-5px);
@@ -413,8 +439,15 @@
         align-items: center;
         gap: 6px;
         font-weight: 500;
+        cursor: pointer;
     }
     .project-link:hover { text-decoration: underline; }
+
+    /* Research Card (New) */
+    .research-card {
+        border-left: 4px solid var(--accent);
+        padding-left: 20px;
+    }
 
     /* Experience Timeline */
     .timeline-item {
@@ -475,6 +508,29 @@
     /* Footer */
     footer { padding: 60px 0; border-top: 1px solid var(--border); margin-top: 80px; text-align: center; color: var(--text-muted); font-size: 14px; }
     
+    /* Scroll to Top */
+    #back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: var(--accent);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 99;
+    }
+    #back-to-top.show { opacity: 1; visibility: visible; }
+    
     /* Animations */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -505,12 +561,13 @@
       </a>
       
       <div class="menu">
-        <a href="#skills" class="hidden-mobile">Skills</a>
-        <a href="#projects" class="hidden-mobile">Projects</a>
-        <a href="#experience" class="hidden-mobile">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
         
         <button id="search-trigger" class="btn" title="Search (Cmd+K)">
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right:4px"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          <span class="kbd">Cmd+K</span>
         </button>
 
         <button id="theme-toggle" class="btn" title="Toggle Theme">
@@ -563,6 +620,9 @@
             - <span class="variable">experience</span>: See work history<br>
             - <span class="variable">resume</span>: Open Resume (PDF)<br>
             - <span class="variable">contact</span>: How to reach me<br>
+            - <span class="variable">game</span>: Play a mini-game 🎮<br>
+            - <span class="variable">ls</span>: List sections<br>
+            - <span class="variable">date</span>: Show current time<br>
             - <span class="variable">clear</span>: Clear terminal
           </div>
 
@@ -574,7 +634,7 @@
       </div>
     </section>
     
-    <!-- Impact Stats (New) -->
+    <!-- Impact Stats -->
     <div class="container">
         <div class="stats-bar">
             <div class="stat-item">
@@ -600,216 +660,234 @@
         </div>
     </div>
     
-    <!-- Skills Section -->
+    <!-- Skills Section (Visual) -->
     <section id="skills" style="padding-top: 60px;">
       <h2 class="section-title">Tech Stack</h2>
-      <div class="skills-section">
-        <div class="skill-category search-item" data-title="Mobile Skills" data-tags="Flutter, Dart, Swift, Kotlin, React Native">
-          <h3>📱 Mobile & Frontend</h3>
-          <ul class="skill-list">
-            <li>Flutter & Dart (Expert)</li>
-            <li>Swift (iOS Native)</li>
-            <li>Kotlin (Android Native)</li>
-            <li>React & Next.js</li>
-            <li>Firebase & Clean Arch</li>
-          </ul>
+      <div class="skills-grid-container">
+        <div class="skill-box">
+            <!-- Using proper SVG URL for Flutter to fix broken image -->
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="32" height="32" alt="Flutter">
+            <span class="skill-name">Flutter</span>
         </div>
-        
-        <div class="skill-category search-item" data-title="AI & ML Skills" data-tags="Python, PyTorch, TensorFlow, Pandas">
-          <h3>🧠 AI & Machine Learning</h3>
-          <ul class="skill-list">
-            <li>Python & Pandas</li>
-            <li>PyTorch & TensorFlow</li>
-            <li>Scikit-learn</li>
-            <li>Computer Vision</li>
-            <li>Generative AI / RAG</li>
-          </ul>
+        <div class="skill-box">
+            <i class="fab fa-python skill-icon" style="color: #3776AB"></i>
+            <span class="skill-name">Python</span>
         </div>
-        
-        <div class="skill-category search-item" data-title="Cloud & DevOps Skills" data-tags="AWS, Docker, CI/CD, Git">
-          <h3>☁️ Cloud & DevOps</h3>
-          <ul class="skill-list">
-            <li>AWS (S3, EC2, SageMaker)</li>
-            <li>Docker & Kubernetes</li>
-            <li>CI/CD (GitHub Actions)</li>
-            <li>Git & GitLab</li>
-            <li>GCP Services</li>
-          </ul>
+        <div class="skill-box">
+            <i class="fab fa-swift skill-icon" style="color: #F05138"></i>
+            <span class="skill-name">Swift</span>
         </div>
-        
-        <div class="skill-category search-item" data-title="Core & Automation Skills" data-tags="Java, SQL, PowerPlatform">
-          <h3>⚙️ Core & Automation</h3>
-          <ul class="skill-list">
-            <li>Java & C++</li>
-            <li>SQL & NoSQL</li>
-            <li>Power Platform (Apps/BI)</li>
-            <li>System Design</li>
-            <li>Agile & Scrum</li>
-          </ul>
+        <div class="skill-box">
+            <i class="fab fa-android skill-icon" style="color: #3DDC84"></i>
+            <span class="skill-name">Android</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-aws skill-icon" style="color: #FF9900"></i>
+            <span class="skill-name">AWS</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-docker skill-icon" style="color: #2496ED"></i>
+            <span class="skill-name">Docker</span>
+        </div>
+        <div class="skill-box">
+            <i class="fas fa-brain skill-icon" style="color: #EE4C2C"></i>
+            <span class="skill-name">PyTorch</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-java skill-icon" style="color: #007396"></i>
+            <span class="skill-name">Java</span>
+        </div>
+        <div class="skill-box">
+            <i class="fas fa-database skill-icon" style="color: #4479A1"></i>
+            <span class="skill-name">SQL</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-git-alt skill-icon" style="color: #F05032"></i>
+            <span class="skill-name">Git</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-react skill-icon" style="color: #61DAFB"></i>
+            <span class="skill-name">React</span>
+        </div>
+        <div class="skill-box">
+            <i class="fab fa-microsoft skill-icon" style="color: #00A4EF"></i>
+            <span class="skill-name">PowerPlatform</span>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
     <section id="projects" style="padding-top: 60px;">
-      <h2 class="section-title">
-        Featured Projects
-      </h2>
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-bottom: 24px;">
+          <h2 class="section-title" style="margin-bottom:0; border:none;">Engineering Projects</h2>
+          <div class="filter-container" style="margin-bottom:0;">
+              <button class="filter-btn active" data-filter="all">All</button>
+              <button class="filter-btn" data-filter="mobile">Mobile</button>
+              <button class="filter-btn" data-filter="backend">Backend</button>
+          </div>
+      </div>
       
-      <div class="grid">
-        <!-- Project 1 (Mobile Style) -->
-        <article class="card mobile-project search-item" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
+      <div class="grid" id="projects-grid">
+        <!-- Project 1 (Mobile) -->
+        <article class="card mobile-project search-item" data-category="mobile ai" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1576091160550-2187d80a1830?q=80&w=800&auto=format&fit=crop" alt="Gait Analysis and Motion Data">
+            <!-- Updated AirPods image to better show wearable tech context -->
+            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop" alt="Headphones and Music">
           </div>
           <div class="card-body">
             <h3>AirPods Gait Auth</h3>
-            <p>Real-time authentication using AirPods IMU data. Built a custom Flutter Event Channel for iOS sensors and a Python ML backend, boosting auth accuracy by 85%.</p>
+            <p>Real-time authentication using AirPods IMU data. Custom Flutter Event Channel for high-frequency sensor streaming.</p>
             <div class="tags">
               <span class="tag">Flutter</span>
               <span class="tag">PyTorch</span>
               <span class="tag">FastAPI</span>
             </div>
+            <div class="project-footer">
+                <a href="https://github.com/eben98" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
+            </div>
           </div>
         </article>
 
-        <!-- Project 2 (Mobile Style) -->
-        <article class="card mobile-project search-item" data-title="Toyota Connected Services" data-tags="Flutter, iOS, Android, Enterprise">
+        <!-- Project 2 (Mobile) -->
+        <article class="card mobile-project search-item" data-category="mobile" data-title="Toyota Connected Services" data-tags="Flutter, iOS, Android, Enterprise">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Automotive Infotainment Dashboard">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop" alt="Car Dashboard">
           </div>
           <div class="card-body">
             <h3>Toyota Connected Services</h3>
-            <p>Integrated a Flutter subscription module into native iOS/Android apps. Optimized performance and reduced crash rates in a large-scale enterprise environment.</p>
+            <p>Integrated Flutter subscription module into native iOS/Android apps. Optimized performance for 86% user satisfaction.</p>
             <div class="tags">
               <span class="tag">Flutter</span>
               <span class="tag">Swift/Kotlin</span>
               <span class="tag">CI/CD</span>
             </div>
+            <div class="project-footer">
+                <a href="#" class="project-link">Private Repo</a>
+            </div>
           </div>
         </article>
         
-        <!-- Project 3: Distributed Systems (Standard) -->
-        <article class="card search-item" data-title="Distributed File Retrieval" data-tags="Java, Distributed Systems, Concurrency">
+        <!-- Project 3: Distributed Systems (Backend) -->
+        <article class="card search-item" data-category="backend" data-title="Distributed File Retrieval" data-tags="Java, Distributed Systems, Concurrency">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Network Topology and Servers">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=800&auto=format&fit=crop" alt="Network Server">
           </div>
           <div class="card-body">
             <h3>Distributed File Retrieval</h3>
-            <p>Simulated a fault-tolerant file retrieval engine in Java using TCP/IP sockets. Implemented logical clocks, leader election, and mutual exclusion algorithms.</p>
+            <p>Fault-tolerant file engine using TCP/IP sockets. Implemented logical clocks, leader election, and mutual exclusion.</p>
             <div class="tags">
               <span class="tag">Java</span>
               <span class="tag">Multi-threading</span>
               <span class="tag">TCP/IP</span>
             </div>
             <div class="project-footer">
-                <a href="https://github.com/eben98" class="project-link"><i class="fab fa-github"></i> View Code</a>
+                <a href="https://github.com/eben98" target="_blank" class="project-link"><i class="fab fa-github"></i> Code</a>
             </div>
           </div>
         </article>
 
-        <!-- Project 4 (Standard) -->
-        <article class="card search-item" data-title="Genome Assembly & Analysis" data-tags="Python, Data Science, Research">
+        <!-- Project 5 (Mobile) -->
+        <article class="card mobile-project search-item" data-category="mobile" data-title="Kipos Stadia" data-tags="Flutter, Firebase, Social">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop" alt="DNA Sequencing Data">
-          </div>
-          <div class="card-body">
-            <h3>Genome Assembly</h3>
-            <p>Reconstructed bacterial genomes from mosquito species using de novo assembly. Built Python pipelines (K-Means, PCA) to map gene expression to motor behaviors.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">Bioinformatics</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Project 5 (Mobile Style) -->
-        <article class="card mobile-project search-item" data-title="Kipos Stadia" data-tags="Flutter, Firebase, Social">
-          <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" alt="Social Connection and Networking">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop" alt="Social Network">
           </div>
           <div class="card-body">
             <h3>Kipos Stadia</h3>
-            <p>Church networking app with social feeds and article learning. Integrated REST/GraphQL and improved stability by resolving critical bugs.</p>
+            <p>Church networking app with social feeds. Integrated REST/GraphQL and improved stability by resolving critical bugs.</p>
             <div class="tags">
               <span class="tag">Flutter</span>
               <span class="tag">GraphQL</span>
               <span class="tag">Firebase</span>
             </div>
+            <div class="project-footer">
+               <a href="https://stadia.org/kipos/" target="_blank" class="project-link">View App</a>
+            </div>
           </div>
         </article>
         
-        <!-- Project 6 (Mobile Style) -->
-        <article class="card mobile-project search-item" data-title="MOHI NGO Apps" data-tags="Flutter, Offline-First, Social Good">
+        <!-- Project 6 (Mobile) -->
+        <article class="card mobile-project search-item" data-category="mobile" data-title="MOHI NGO Apps" data-tags="Flutter, Offline-First, Social Good">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop" alt="Digital Education in Field">
+            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=800&auto=format&fit=crop" alt="Education Tech">
           </div>
           <div class="card-body">
             <h3>MOHI NGO Apps</h3>
-            <p>Redesigned attendance and workflow apps for social workers. Improved task efficiency by 40% and app performance by 30%.</p>
+            <p>Redesigned attendance and workflow apps. Improved task efficiency by 40% and app performance by 30%.</p>
             <div class="tags">
               <span class="tag">Flutter</span>
-              <span class="tag">Performance</span>
+              <span class="tag">Offline-First</span>
+            </div>
+            <div class="project-footer">
+               <a href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" class="project-link">Play Store</a>
             </div>
           </div>
         </article>
 
-         <!-- Project 7 (Standard) -->
-        <article class="card search-item" data-title="Power Platform Automation" data-tags="PowerApps, SQL, Automation">
+         <!-- Project 7 (Backend/Core) -->
+        <article class="card search-item" data-category="backend" data-title="Power Platform Automation" data-tags="PowerApps, SQL, Automation">
           <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Business Analytics Dashboard">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" alt="Analytics Dashboard">
           </div>
           <div class="card-body">
             <h3>Enterprise Automation</h3>
-            <p>Built Power Apps and Automate workflows for Nokia, The Hindu, and Health India TPA, boosting operational efficiency by up to 60%.</p>
+            <p>Built Power Apps/Automate workflows for Nokia & The Hindu, boosting operational efficiency by 60%.</p>
             <div class="tags">
               <span class="tag">PowerApps</span>
               <span class="tag">SQL</span>
               <span class="tag">PowerBI</span>
             </div>
+            <div class="project-footer">
+                <span class="project-link">Internal Tool</span>
+            </div>
           </div>
         </article>
-        
-        <!-- New: Recommender Systems -->
-        <article class="card search-item" data-title="Recommender Systems" data-tags="Python, Machine Learning">
-          <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?q=80&w=800&auto=format&fit=crop" alt="Network Graph and Algorithms">
-          </div>
+      </div>
+    </section>
+
+    <!-- Research Section (Separated) -->
+    <section id="research" style="padding-top: 60px;">
+      <h2 class="section-title">Academic Research & ML</h2>
+      <div class="grid">
+        <!-- Research 1 -->
+        <article class="card research-card search-item" data-title="Genome Assembly & Analysis" data-tags="Python, Data Science, Research">
           <div class="card-body">
-            <h3>Recommender Systems</h3>
+            <h3><i class="fas fa-dna" style="color:var(--accent); margin-right:8px;"></i> Genome Assembly</h3>
+            <p>Reconstructed bacterial genomes from mosquito species using de novo assembly (Illumina/PacBio). Built Python pipelines (K-Means, PCA) to map gene expression to motor behaviors.</p>
+            <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Bioinformatics</span>
+                <span class="tag">Pandas</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Research 2 -->
+        <article class="card research-card search-item" data-title="Recommender Systems" data-tags="Python, Machine Learning">
+          <div class="card-body">
+            <h3><i class="fas fa-network-wired" style="color:var(--accent); margin-right:8px;"></i> Recommender Systems</h3>
             <p>Built Item-Based Similarity Recommender System. Focused on sparse matrix operations and cosine similarity for efficient top-k retrieval.</p>
             <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Pandas</span>
-              <span class="tag">RecSys</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">RecSys</span>
+                <span class="tag">Python</span>
             </div>
-            <div class="project-footer">
-                <a href="https://github.com/eben98/dsc_478_final_project_rec_system" class="project-link"><i class="fab fa-github"></i> View Code</a>
-            </div>
+            <a href="https://github.com/eben98/dsc_478_final_project_rec_system" class="project-link" style="margin-top:12px;">GitHub Repo &rarr;</a>
           </div>
         </article>
 
-        <!-- New: Energy Consumption -->
-        <article class="card search-item" data-title="Energy Forecasting" data-tags="Python, Neural Networks">
-          <div class="card-img">
-            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop" alt="Smart Grid and Energy Data">
-          </div>
+        <!-- Research 3 -->
+        <article class="card research-card search-item" data-title="Energy Forecasting" data-tags="Python, Neural Networks">
           <div class="card-body">
-            <h3>Energy Demand Forecasting</h3>
-            <p>Predicting hourly energy consumption using LSTM neural networks and weather data from 18 stations. Analyzed 1M+ records.</p>
+            <h3><i class="fas fa-chart-area" style="color:var(--accent); margin-right:8px;"></i> Energy Forecasting</h3>
+            <p>Predicting hourly energy consumption using LSTM neural networks and weather data from 18 stations. Analyzed 1M+ records for deep learning model training.</p>
             <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">LSTM</span>
-              <span class="tag">Deep Learning</span>
+                <span class="tag">Deep Learning</span>
+                <span class="tag">LSTM</span>
+                <span class="tag">Time Series</span>
             </div>
-            <div class="project-footer">
-                <!-- Assuming repo for now, or text description if no direct link -->
-                <a href="https://github.com/eben98?tab=repositories" class="project-link"><i class="fab fa-github"></i> View Code</a>
-            </div>
+            <a href="https://github.com/eben98?tab=repositories" class="project-link" style="margin-top:12px;">GitHub Repo &rarr;</a>
           </div>
         </article>
-
       </div>
     </section>
 
@@ -1035,6 +1113,10 @@
     </footer>
 
   </main>
+  
+  <button id="back-to-top" title="Back to Top">
+      <i class="fas fa-arrow-up"></i>
+  </button>
 
   <script>
     // 1. Theme Toggle
@@ -1088,7 +1170,13 @@
                     - <span class="variable">experience</span>: See work history<br>
                     - <span class="variable">resume</span>: Open Resume (PDF)<br>
                     - <span class="variable">contact</span>: How to reach me<br>
-                    - <span class="variable">clear</span>: Clear terminal`;
+                    - <span class="variable">game</span>: Play Guess the Number<br>
+                    - <span class="variable">date</span>: Show current time<br>
+                    - <span class="variable">whoami</span>: Display user<br>
+                    - <span class="variable">ls</span>: List sections<br>
+                    - <span class="variable">sudo</span>: Try it and see<br>
+                    - <span class="variable">clear</span>: Clear terminal<br>
+                    - <span class="variable">echo</span>: Echo back text`;
                     break;
                 case 'projects':
                     response = 'Navigating to projects...';
@@ -1109,12 +1197,36 @@
                 case 'contact':
                     response = 'Email: <a href="mailto:ebenezerdaniel98@gmail.com" style="color:var(--accent)">ebenezerdaniel98@gmail.com</a><br>GitHub: <a href="https://github.com/eben98" style="color:var(--accent)">github.com/eben98</a>';
                     break;
+                case 'game':
+                    response = 'I am thinking of a number between 1 and 10. Type "guess <number>" to play!';
+                    break;
+                case 'date':
+                    response = new Date().toString();
+                    break;
+                case 'whoami':
+                    response = 'Visitor';
+                    break;
+                case 'ls':
+                    response = 'projects/  skills/  experience/  resume.pdf';
+                    break;
+                case 'sudo':
+                    response = 'Permission denied: You are not Ebenezer.';
+                    break;
                 case 'clear':
                     const lines = termBody.querySelectorAll('.output-line');
                     lines.forEach(l => l.remove());
-                    return; 
+                    return;
                 default:
-                    response = `Command not found: ${command}. Type <span class="variable">help</span> for available commands.`;
+                    if (command.startsWith('guess ')) {
+                        const guess = parseInt(command.split(' ')[1]);
+                        const target = 7; // Static for demo
+                        if (guess === target) response = "🎉 Correct! You win!";
+                        else response = "❌ Wrong number. Try again!";
+                    } else if (command.startsWith('echo ')) {
+                        response = originalCommand.substring(5);
+                    } else {
+                        response = `Command not found: ${command}. Type <span class="variable">help</span> for available commands.`;
+                    }
             }
             
             if (response) {
@@ -1218,6 +1330,63 @@
     // Close on backdrop click
     searchOverlay.addEventListener('click', (e) => {
       if (e.target === searchOverlay) toggleSearch();
+    });
+    
+    // 4. Project Filtering
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('#projects-grid .card');
+    
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const filter = btn.dataset.filter;
+            
+            projectCards.forEach(card => {
+                const category = card.dataset.category || '';
+                if (filter === 'all' || category.includes(filter)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // 5. Scroll to Top & Active Nav
+    const backToTopBtn = document.getElementById('back-to-top');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.menu a');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+        
+        // Active Nav
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - 150)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(a => {
+            a.classList.remove('active');
+            if (a.getAttribute('href').includes(current)) {
+                a.classList.add('active');
+            }
+        });
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
   </script>
