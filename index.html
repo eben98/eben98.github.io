@@ -18,6 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   
   <!-- Favicon -->
   <link rel="icon" href="https://github.com/eben98.png">
@@ -357,6 +358,7 @@
     .variable { color: #79c0ff; }
     .comment { color: #6a9955; display: block; margin-top: 8px; }
     .output-line { margin-bottom: 8px; line-height: 1.5; }
+    .ai-response { color: #ce9178; margin-bottom: 12px; white-space: pre-wrap; }
     
     .input-line { display: flex; align-items: center; }
     .terminal-input {
@@ -691,8 +693,10 @@
       </a>
       
       <div class="menu">
+        <a href="#about" class="nav-link">About</a>
         <a href="#skills" class="nav-link">Skills</a>
         <a href="#projects" class="nav-link">Projects</a>
+        <a href="#writing" class="nav-link">Thoughts</a>
         <a href="#experience" class="nav-link">Experience</a>
         
         <button id="search-trigger" class="btn" title="Search (Cmd+K)">
@@ -742,18 +746,11 @@
           <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">cat intro.txt</span></div>
           <div class="output-line" style="color: var(--text-muted); margin-bottom: 12px;">Mobile Engineer | AI Enthusiast | DePaul Grad Student</div>
           
-          <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">help</span></div>
-          <div class="output-line" style="color: #e3b341; margin-bottom: 12px;">
-            Available commands:<br>
-            - <span class="variable">projects</span>: View my work<br>
-            - <span class="variable">skills</span>: List technical skills<br>
-            - <span class="variable">experience</span>: See work history<br>
-            - <span class="variable">resume</span>: Open Resume (PDF)<br>
-            - <span class="variable">contact</span>: How to reach me<br>
-            - <span class="variable">game</span>: Play a mini-game 🎮<br>
-            - <span class="variable">ls</span>: List sections<br>
-            - <span class="variable">date</span>: Show current time<br>
-            - <span class="variable">clear</span>: Clear terminal
+          <div class="output-line"><span class="cmd">➜</span> <span class="string">~</span> <span class="text-main">eben_ai --start</span></div>
+          <div class="output-line" style="color: #27c93f; margin-bottom: 12px;">
+            ✨ AI Agent initialized.<br>
+            I can answer questions about my skills, projects, and resume.<br>
+            Try asking: "What is your experience with Flutter?" or "Tell me about the AirPods project."
           </div>
 
           <div class="input-line">
@@ -789,6 +786,29 @@
             </div>
         </div>
     </div>
+
+    <!-- About Me Section (New) -->
+    <section id="about" style="padding-top: 60px;">
+      <h2 class="section-title">About Me</h2>
+      <div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 300px;">
+          <p class="lead" style="margin-bottom: 20px;">
+            I'm a software engineer who loves the intersection of <strong>mobile development</strong> and <strong>machine learning</strong>. 
+            My journey started with building native Android apps, but I fell in love with Flutter for its ability to create beautiful, high-performance experiences on any screen.
+          </p>
+          <p style="color: var(--text-muted); margin-bottom: 20px;">
+            Currently, I'm pursuing my MS in Computer Science at DePaul University, where I'm diving deep into AI research—specifically how we can use sensor data (like from your AirPods!) to solve real medical problems.
+          </p>
+          <p style="color: var(--text-muted);">
+            When I'm not coding, you can find me exploring Chicago's tech scene, tinkering with Raspberry Pis, or optimizing my home automation setup.
+          </p>
+        </div>
+        <div style="flex: 1; min-width: 300px; display: flex; justify-content: center;">
+             <!-- Placeholder for a personal/action photo -->
+             <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=600&auto=format&fit=crop" alt="Coding Workspace" style="border-radius: 12px; width: 100%; max-width: 400px; border: 1px solid var(--border);">
+        </div>
+      </div>
+    </section>
     
     <!-- Skills Section (Visual) -->
     <section id="skills" style="padding-top: 60px;">
@@ -800,43 +820,43 @@
             <span class="skill-name">Flutter</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-python skill-icon" style="color: #3776AB"></i>
+            <i class="devicon-python-plain colored skill-icon"></i>
             <span class="skill-name">Python</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-swift skill-icon" style="color: #F05138"></i>
+            <i class="devicon-swift-plain colored skill-icon"></i>
             <span class="skill-name">Swift</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-android skill-icon" style="color: #3DDC84"></i>
+            <i class="devicon-android-plain colored skill-icon"></i>
             <span class="skill-name">Android</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-aws skill-icon" style="color: #FF9900"></i>
+            <i class="devicon-amazonwebservices-plain-wordmark colored skill-icon"></i>
             <span class="skill-name">AWS</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-docker skill-icon" style="color: #2496ED"></i>
+            <i class="devicon-docker-plain colored skill-icon"></i>
             <span class="skill-name">Docker</span>
         </div>
         <div class="skill-box">
-            <i class="fas fa-brain skill-icon" style="color: #EE4C2C"></i>
+            <i class="devicon-pytorch-original colored skill-icon"></i>
             <span class="skill-name">PyTorch</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-java skill-icon" style="color: #007396"></i>
+            <i class="devicon-java-plain colored skill-icon"></i>
             <span class="skill-name">Java</span>
         </div>
         <div class="skill-box">
-            <i class="fas fa-database skill-icon" style="color: #4479A1"></i>
+            <i class="devicon-mysql-plain colored skill-icon"></i>
             <span class="skill-name">SQL</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-git-alt skill-icon" style="color: #F05032"></i>
+            <i class="devicon-git-plain colored skill-icon"></i>
             <span class="skill-name">Git</span>
         </div>
         <div class="skill-box">
-            <i class="fab fa-react skill-icon" style="color: #61DAFB"></i>
+            <i class="devicon-react-original colored skill-icon"></i>
             <span class="skill-name">React</span>
         </div>
         <div class="skill-box">
@@ -862,7 +882,7 @@
         <article class="card mobile-project search-item" data-category="mobile ai" data-title="AirPods Gait Authentication" data-tags="Flutter, Python, ML, IoT">
           <div class="card-img">
             <!-- Updated AirPods image to better show wearable tech context -->
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop" alt="Headphones and Music">
+            <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?q=80&w=800&auto=format&fit=crop" alt="Headphones and Music">
           </div>
           <div class="card-body">
             <h3>AirPods Gait Auth</h3>
@@ -873,8 +893,8 @@
               <span class="tag">FastAPI</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('AirPods')">View Details</span>
-                <a href="https://github.com/eben98" target="_blank" class="project-link" style="margin-left:12px;"><i class="fab fa-github"></i> Code</a>
+                <button class="btn-ai" onclick="analyzeProject('AirPods Gait Auth')">✨ AI Insight</button>
+                <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('AirPods')">Arch</button>
             </div>
           </div>
         </article>
@@ -893,8 +913,8 @@
               <span class="tag">CI/CD</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('Toyota')">View Details</span>
-                <a href="#" class="project-link">Private Repo</a>
+                <button class="btn-ai" onclick="analyzeProject('Toyota Connected Services')">✨ AI Insight</button>
+                <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('Toyota')">Arch</button>
             </div>
           </div>
         </article>
@@ -913,8 +933,8 @@
               <span class="tag">TCP/IP</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('Distributed')">View Details</span>
-                <a href="https://github.com/eben98" target="_blank" class="project-link" style="margin-left:12px;"><i class="fab fa-github"></i> Code</a>
+                <button class="btn-ai" onclick="analyzeProject('Distributed File Retrieval')">✨ AI Insight</button>
+                <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('Distributed')">Arch</button>
             </div>
           </div>
         </article>
@@ -933,8 +953,8 @@
               <span class="tag">Firebase</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('Kipos')">View Details</span>
-               <a href="https://stadia.org/kipos/" target="_blank" class="project-link" style="margin-left:12px;">View App</a>
+               <button class="btn-ai" onclick="analyzeProject('Kipos Stadia')">✨ AI Insight</button>
+               <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('Kipos')">Arch</button>
             </div>
           </div>
         </article>
@@ -952,8 +972,8 @@
               <span class="tag">Offline-First</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('MOHI')">View Details</span>
-               <a href="https://play.google.com/store/apps/developer?id=Missions+of+Hope+International" target="_blank" class="project-link" style="margin-left:12px;">Play Store</a>
+                <button class="btn-ai" onclick="analyzeProject('MOHI NGO Apps')">✨ AI Insight</button>
+                <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('MOHI')">Arch</button>
             </div>
           </div>
         </article>
@@ -972,8 +992,8 @@
               <span class="tag">PowerBI</span>
             </div>
             <div class="project-footer">
-                <span class="project-link" onclick="openProjectModal('Power')">View Details</span>
-                <span class="project-link" style="margin-left:12px;">Internal Tool</span>
+                <button class="btn-ai" onclick="analyzeProject('Power Platform Automation')">✨ AI Insight</button>
+                <button class="btn-ai" style="margin-left:8px;" onclick="openProjectModal('Power')">Arch</button>
             </div>
           </div>
         </article>
@@ -994,6 +1014,9 @@
                 <span class="tag">Bioinformatics</span>
                 <span class="tag">Pandas</span>
             </div>
+            <div class="project-footer">
+                <button class="btn-ai" onclick="analyzeProject('Genome Assembly')">✨ AI Insight</button>
+            </div>
           </div>
         </article>
 
@@ -1007,7 +1030,10 @@
                 <span class="tag">RecSys</span>
                 <span class="tag">Python</span>
             </div>
-            <a href="https://github.com/eben98/dsc_478_final_project_rec_system" class="project-link" style="margin-top:12px;">GitHub Repo &rarr;</a>
+            <div class="project-footer">
+                <button class="btn-ai" onclick="analyzeProject('Recommender Systems')">✨ AI Insight</button>
+                <a href="https://github.com/eben98/dsc_478_final_project_rec_system" class="project-link" style="margin-left:12px;">GitHub Repo &rarr;</a>
+            </div>
           </div>
         </article>
 
@@ -1021,12 +1047,32 @@
                 <span class="tag">LSTM</span>
                 <span class="tag">Time Series</span>
             </div>
-            <a href="https://github.com/eben98?tab=repositories" class="project-link" style="margin-top:12px;">GitHub Repo &rarr;</a>
+            <div class="project-footer">
+                <button class="btn-ai" onclick="analyzeProject('Energy Forecasting')">✨ AI Insight</button>
+                <a href="https://github.com/eben98?tab=repositories" class="project-link" style="margin-left:12px;">GitHub Repo &rarr;</a>
+            </div>
           </div>
         </article>
       </div>
     </section>
     
+    <!-- Thoughts/Writing Section (New) -->
+    <section id="writing" style="padding-top: 60px;">
+      <h2 class="section-title">Thoughts & Writing</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <article class="card" style="padding: 20px; border-left: 4px solid var(--accent);">
+              <h3 style="margin-top:0;">Optimizing Flutter for Sensor Data</h3>
+              <p style="font-size:14px; color:var(--text-muted);">A deep dive into how I used Event Channels to handle 60Hz accelerometer data without blocking the UI thread.</p>
+              <a href="#" style="font-size:13px; color:var(--accent);">Read Article &rarr;</a>
+          </article>
+          <article class="card" style="padding: 20px; border-left: 4px solid var(--accent);">
+              <h3 style="margin-top:0;">From Native to Flutter: Lessons Learned</h3>
+              <p style="font-size:14px; color:var(--text-muted);">My experience migrating legacy Android/iOS codebases to a unified Flutter architecture at Toyota.</p>
+              <a href="#" style="font-size:13px; color:var(--accent);">Read Article &rarr;</a>
+          </article>
+      </div>
+    </section>
+
     <!-- GitHub Activity -->
     <section id="github-activity" style="padding-top: 60px;">
         <h2 class="section-title">GitHub Activity</h2>
@@ -1352,17 +1398,90 @@
         termInput.focus();
     });
 
-    termInput.addEventListener('keydown', (e) => {
+    // --- SIMULATED AI LOGIC (No API Key Required) ---
+    // Pre-written "AI" analyses for your specific projects
+    const projectInsights = {
+        "AirPods Gait Auth": "<strong>AI Analysis:</strong> This project tackles the challenge of real-time biometric authentication on edge devices.<br><br><strong>Key Technical Challenge:</strong> Streaming high-frequency (60Hz) accelerometer data from CoreMotion to Flutter without blocking the UI thread.<br><strong>Solution:</strong> Implemented a custom iOS EventChannel in Swift to handle sensor data in a background thread, piping it to a Python backend via WebSockets.<br><strong>Business Impact:</strong> Achieved 85% authentication accuracy, providing a viable hands-free security alternative for visually impaired users.",
+        
+        "Toyota Connected Services": "<strong>AI Analysis:</strong> A complex enterprise integration of Flutter into a massive existing native codebase (Add-to-App).<br><br><strong>Key Technical Challenge:</strong> Managing state synchronization between the native host apps (iOS/Android) and the Flutter Subscriptions module.<br><strong>Solution:</strong> Designed a unified platform channel interface and optimized the Flutter engine warm-up strategy.<br><strong>Business Impact:</strong> Reduced app crash rates by significant margins and successfully launched the Subscriptions feature to millions of users.",
+
+        "Distributed File Retrieval": "<strong>AI Analysis:</strong> A robust simulation of decentralized systems concepts in a pure Java environment.<br><br><strong>Key Technical Challenge:</strong> preventing race conditions when multiple client nodes attempt to access or modify the same file resource simultaneously.<br><strong>Solution:</strong> Implemented the Ricart-Agrawala algorithm for distributed mutual exclusion and logical clocks for event ordering.<br><strong>Result:</strong> Demonstrated 100% data consistency under high-concurrency test loads.",
+
+        "Genome Assembly": "<strong>AI Analysis:</strong> A data-heavy bioinformatics pipeline requiring efficient processing of large genomic datasets.<br><br><strong>Key Technical Challenge:</strong> Reconstructing fragmented DNA sequences from mixed sequencing technologies (Illumina/PacBio) with high accuracy.<br><strong>Solution:</strong> Built automated Python pipelines using De Novo assembly algorithms and K-Means clustering for pattern recognition.<br><strong>Result:</strong> Accelerated gene-behavior mapping analysis throughput by 30%.",
+
+        "Kipos Stadia": "<strong>AI Analysis:</strong> A social networking platform requiring seamless offline-first capabilities.<br><br><strong>Key Technical Challenge:</strong> Syncing complex user-generated content (posts, comments) when users have intermittent internet connectivity.<br><strong>Solution:</strong> Implemented a local-first architecture using Hive/SQLite with background sync jobs to queue actions.<br><strong>Result:</strong> Increased user retention by providing a smooth, lag-free experience regardless of network status.",
+
+        "MOHI NGO Apps": "<strong>AI Analysis:</strong> A critical data collection tool for field workers in remote areas.<br><br><strong>Key Technical Challenge:</strong> Ensuring data integrity for attendance tracking on low-end devices in remote villages.<br><strong>Solution:</strong> Optimized Flutter rendering performance and built a robust local caching layer.<br><strong>Impact:</strong> Improved field worker task efficiency by 40% by eliminating manual paper-based tracking.",
+
+        "Power Platform Automation": "<strong>AI Analysis:</strong> Enterprise process automation for legacy business workflows.<br><br><strong>Key Technical Challenge:</strong> Integrating modern Power Apps interfaces with legacy SQL and SharePoint data sources securely.<br><strong>Solution:</strong> Designed custom connectors and Power Automate flows to bridge the gap between systems.<br><strong>Impact:</strong> Automating these manual workflows saved the Finance/HR teams 60% of their daily reporting time.",
+        
+        "Recommender Systems": "<strong>AI Analysis:</strong> A classic machine learning problem focusing on efficient similarity search.<br><br><strong>Key Technical Challenge:</strong> Calculating similarity scores between thousands of items in real-time without high latency.<br><strong>Solution:</strong> Utilized sparse matrix operations in Python (SciPy) and cosine similarity vectors to optimize the top-K retrieval process.<br><strong>Result:</strong> A scalable recommendation engine capable of handling large datasets efficiently.",
+        
+        "Energy Forecasting": "<strong>AI Analysis:</strong> A deep learning time-series forecasting problem.<br><br><strong>Key Technical Challenge:</strong> Capturing long-term dependencies in weather and energy consumption data to make accurate future predictions.<br><strong>Solution:</strong> Designed and trained an LSTM (Long Short-Term Memory) neural network using TensorFlow/Keras.<br><strong>Result:</strong> Successfully modeled complex non-linear relationships in the 1M+ record dataset."
+    };
+
+    // Fallback responses for general chat
+    function getSimulatedResponse(query) {
+        const lower = query.toLowerCase();
+        if (lower.includes("flutter")) return "I have 4+ years of experience building responsive Flutter apps like Toyota Connected Services and Kipos Stadia.";
+        if (lower.includes("python") || lower.includes("ml") || lower.includes("ai")) return "I use Python for ML pipelines (PyTorch/TensorFlow) in projects like AirPods Gait Auth and Energy Forecasting.";
+        if (lower.includes("contact") || lower.includes("email")) return "You can reach me at ebenezerdaniel98@gmail.com or on LinkedIn.";
+        if (lower.includes("experience") || lower.includes("work")) return "I've worked at UB Technology Innovations as a Software Engineer and currently serve as a Graduate Assistant at DePaul University.";
+        if (lower.includes("roast")) return "Your resume looks great! But if I had to roast it... maybe add a few more green squares to that GitHub graph? 😉 Just kidding, the distributed systems project is impressive!";
+        return "I'm a simulated AI agent. I can tell you about my 'projects', 'skills', or 'experience'. Try asking about those!";
+    }
+
+    async function analyzeProject(projectName) {
+        // Scroll to terminal
+        document.getElementById('terminal-window').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Add command to terminal
+        const command = `analyze "${projectName}"`;
+        const prevLine = document.createElement('div');
+        prevLine.className = 'output-line';
+        prevLine.innerHTML = `<span class="cmd">➜</span> <span class="string">~</span> ${command}`;
+        termBody.insertBefore(prevLine, termInput.parentElement);
+        
+        // Add loading state
+        const loadingId = 'loading-' + Date.now();
+        const loadingLine = document.createElement('div');
+        loadingLine.className = 'output-line';
+        loadingLine.id = loadingId;
+        loadingLine.style.color = '#79c0ff';
+        loadingLine.innerHTML = '✨ Running analysis...';
+        termBody.insertBefore(loadingLine, termInput.parentElement);
+        
+        // Simulate network delay for realism
+        await new Promise(r => setTimeout(r, 1000));
+        
+        // Remove loading
+        document.getElementById(loadingId).remove();
+        
+        // Get response (from local cache)
+        const insight = projectInsights[projectName] || "Analysis not available for this project yet.";
+        
+        // Display answer
+        const respLine = document.createElement('div');
+        respLine.className = 'output-line';
+        respLine.style.color = '#d4d4d4';
+        respLine.innerHTML = `<div class="ai-response">✨ ${insight}</div>`;
+        termBody.insertBefore(respLine, termInput.parentElement);
+        
+        // Scroll to bottom
+        termBody.scrollTop = termBody.scrollHeight;
+    }
+
+    termInput.addEventListener('keydown', async (e) => {
         if (e.key === 'Enter') {
-            const command = termInput.value.trim().toLowerCase();
-            const originalCommand = termInput.value;
+            const command = termInput.value.trim();
+            const lowerCommand = command.toLowerCase();
             
             if (!command) return;
 
             // Create previous command line
             const prevLine = document.createElement('div');
             prevLine.className = 'output-line';
-            prevLine.innerHTML = `<span class="cmd">➜</span> <span class="string">~</span> ${originalCommand}`;
+            prevLine.innerHTML = `<span class="cmd">➜</span> <span class="string">~</span> ${command}`;
             termBody.insertBefore(prevLine, termInput.parentElement);
             
             // Clear input immediately
@@ -1371,7 +1490,7 @@
             // Process command
             let response = '';
             
-            switch (command) {
+            switch (lowerCommand) {
                 case 'help':
                     response = `Available commands:
                     - <span class="variable">projects</span>: View my work<br>
@@ -1379,13 +1498,14 @@
                     - <span class="variable">experience</span>: See work history<br>
                     - <span class="variable">resume</span>: Open Resume (PDF)<br>
                     - <span class="variable">contact</span>: How to reach me<br>
-                    - <span class="variable">game</span>: Play Guess the Number<br>
+                    - <span class="variable">game</span>: Play a mini-game 🎮<br>
                     - <span class="variable">date</span>: Show current time<br>
                     - <span class="variable">whoami</span>: Display user<br>
                     - <span class="variable">ls</span>: List sections<br>
                     - <span class="variable">sudo</span>: Try it and see<br>
                     - <span class="variable">clear</span>: Clear terminal<br>
-                    - <span class="variable">echo</span>: Echo back text`;
+                    
+                    Or just ask me a question like "What is your Flutter experience?"`;
                     break;
                 case 'projects':
                     response = 'Navigating to projects...';
@@ -1422,19 +1542,33 @@
                     response = 'Permission denied: You are not Ebenezer.';
                     break;
                 case 'clear':
-                    const lines = termBody.querySelectorAll('.output-line');
+                    const lines = termBody.querySelectorAll('.output-line, .ai-response');
                     lines.forEach(l => l.remove());
-                    return;
+                    return; 
                 default:
                     if (command.startsWith('guess ')) {
                         const guess = parseInt(command.split(' ')[1]);
-                        const target = 7; // Static for demo
+                        const target = 7; 
                         if (guess === target) response = "🎉 Correct! You win!";
                         else response = "❌ Wrong number. Try again!";
                     } else if (command.startsWith('echo ')) {
-                        response = originalCommand.substring(5);
+                         response = command.substring(5);
                     } else {
-                        response = `Command not found: ${command}. Type <span class="variable">help</span> for available commands.`;
+                        // Simulated AI response
+                        const loadingId = 'loading-' + Date.now();
+                        const loadingLine = document.createElement('div');
+                        loadingLine.className = 'output-line';
+                        loadingLine.id = loadingId;
+                        loadingLine.style.color = '#79c0ff';
+                        loadingLine.innerHTML = '✨ Thinking...';
+                        termBody.insertBefore(loadingLine, termInput.parentElement);
+                        
+                        // Simulate delay
+                        await new Promise(r => setTimeout(r, 600));
+                        document.getElementById(loadingId).remove();
+                        
+                        const aiAnswer = getSimulatedResponse(command);
+                        response = `<div class="ai-response">✨ ${aiAnswer}</div>`;
                     }
             }
             
